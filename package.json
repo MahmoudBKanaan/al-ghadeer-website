@@ -1,0 +1,23 @@
+{
+  "name": "al-ghadeer-restaurant",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20.19.0" },
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/build.mjs",
+    "preview": "vite preview",
+    "verify": "node test/verify.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/cairo": "5.3.0",
+    "lucide-react": "0.469.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "4.7.0",
+    "vite": "6.4.1"
+  }
+}

@@ -1,0 +1,831 @@
+{
+  "brand": {
+    "name": "مطعم الغدير",
+    "nameShort": "الغدير",
+    "aliases": [
+      "Al Ghadeer Restaurant",
+      "Al Ghadir Restaurant"
+    ],
+    "city": "حفر الباطن",
+    "district": "حي النهضة",
+    "whatsapp": "0501083083",
+    "paletteSource": {
+      "blue": "#3C54A4",
+      "red": "#EC1C24",
+      "background": "#ECECEC",
+      "ink": "#242424"
+    },
+    "logo": "شعار أزرق أحادي اللون داخل إطار بيضاوي قائم. تظهر كلمة «الغدير» بخط عربي مرسوم، تليها ثلاثة أمواج أفقية، ثم حرف S داخل شكل حرف G."
+  },
+  "sourceNotes": [
+    "في الصورة 82 سطر صنف، منها تكرار مطابق واحد. القائمة الرقمية تضم 81 صنفًا مميزًا ضمن 11 قسمًا.",
+    "يظهر رقم 8 إضافي في عمود أسعار الفطور الأيمن دون سطر مقابل. أُبقيت أسعار الأطباق بحسب سياق الصفوف الظاهرة إلى أن يُؤكّد التسعير.",
+    "مشكل المشويات يحمل خمسة أسعار مدرجة، في حين لم تُحدد تسمية الحجم الخامس.",
+    "سعر البيض بالجبنة غير واضح ويظهر الرقم 8127 دون فواصل. سعر المشروب الغازي الصغير غير مقروء.",
+    "الصورة تحمل الاسم والمنطقة ورقم الاتصال، وتذكر أن خدمة التوصيل مجانية.",
+    "الأوصاف تحريرية موجزة، وتحتاج المكونات الدقيقة والحساسيات وأحجام الحصص والتقديم إلى اعتماد المطعم."
+  ],
+  "categories": [
+    {
+      "id": "grills",
+      "name": "المشويات",
+      "items": [
+        {
+          "id": "mixed-grills",
+          "name": "مشكل مشويات",
+          "prices": [
+            37,
+            50,
+            75,
+            110,
+            145
+          ],
+          "description": "تشكيلة من مشويات المطعم في طبق واحد للمشاركة، مع خمسة أحجام مدرجة في القائمة.",
+          "photoPrompt": "large round mixed charcoal grill platter, varied kofta, beef cubes, chicken skewers and lamb chops arranged radially",
+          "notes": "تظهر خمسة أسعار. اسم الحجم الخامس يحتاج إلى تأكيد."
+        },
+        {
+          "id": "meat-kebab",
+          "name": "كباب لحم",
+          "prices": [
+            30
+          ],
+          "description": "أسياخ كباب من اللحم المفروم المتبّل والمشوي.",
+          "photoPrompt": "three grilled ground meat kebab logs, plate, restrained grilled vegetables"
+        },
+        {
+          "id": "meat-kebab-tahini",
+          "name": "كباب لحم بالطحينة",
+          "prices": [
+            30
+          ],
+          "description": "كباب لحم مشوي مع صلصة الطحينة.",
+          "photoPrompt": "grilled ground meat kebab logs topped with pale tahini drizzle"
+        },
+        {
+          "id": "meat-kebab-pomegranate",
+          "name": "كباب لحم بحامض الرمان",
+          "prices": [
+            30
+          ],
+          "description": "كباب لحم مشوي بنكهة حامض الرمان.",
+          "photoPrompt": "grilled ground meat kebab logs with dark pomegranate molasses glaze and a few arils"
+        },
+        {
+          "id": "chicken-kebab",
+          "name": "كباب دجاج",
+          "prices": [
+            25
+          ],
+          "description": "أسياخ كباب من الدجاج المفروم المتبّل والمشوي.",
+          "photoPrompt": "light golden grilled ground chicken kebab logs"
+        },
+        {
+          "id": "chicken-kebab-tahini",
+          "name": "كباب دجاج بالطحينة",
+          "prices": [
+            25
+          ],
+          "description": "كباب دجاج مشوي مع صلصة الطحينة.",
+          "photoPrompt": "golden grilled ground chicken kebab logs topped with pale tahini drizzle"
+        },
+        {
+          "id": "chicken-kebab-pomegranate",
+          "name": "كباب دجاج بحامض الرمان",
+          "prices": [
+            25
+          ],
+          "description": "كباب دجاج مشوي بنكهة حامض الرمان.",
+          "photoPrompt": "golden grilled ground chicken kebab logs glazed with dark pomegranate molasses"
+        },
+        {
+          "id": "hamees",
+          "name": "حميس",
+          "prices": [
+            30
+          ],
+          "description": "طبق حميس على طريقة المطعم.",
+          "photoPrompt": "small skillet of sautéed browned meat pieces with restrained onion and pepper"
+        },
+        {
+          "id": "bone-in-shish-tawook",
+          "name": "شيش طاووق بالعظم",
+          "prices": [
+            25
+          ],
+          "description": "قطع دجاج متبّلة ومشوية تُقدَّم بالعظم.",
+          "photoPrompt": "charcoal grilled bone-in chicken pieces with reddish tawook marinade on white plate"
+        },
+        {
+          "id": "boneless-shish-tawook",
+          "name": "شيش طاووق بدون عظم",
+          "prices": [
+            25
+          ],
+          "description": "قطع دجاج متبّلة ومشوية بدون عظم.",
+          "photoPrompt": "skewered boneless chicken breast chunks, light golden reddish charcoal char"
+        },
+        {
+          "id": "foil-chicken",
+          "name": "دجاج بالقصدير",
+          "prices": [
+            25
+          ],
+          "description": "دجاج متبّل مطهو داخل القصدير.",
+          "photoPrompt": "golden chicken portions cooked inside opened crinkled aluminum foil"
+        },
+        {
+          "id": "meat-skewers",
+          "name": "أوصال لحم",
+          "prices": [
+            30
+          ],
+          "description": "قطع لحم متبّلة ومشوية على الأسياخ.",
+          "photoPrompt": "grilled cubed meat on metal skewers, distinct cubes, charcoal marks"
+        },
+        {
+          "id": "lamb-chops",
+          "name": "ريش",
+          "prices": [
+            35
+          ],
+          "description": "قطع ريش مشوية بملامح الشواء على السطح.",
+          "photoPrompt": "three grilled lamb rib chops with exposed bones, char and herbs"
+        },
+        {
+          "id": "meat-arayes",
+          "name": "عرائس لحم",
+          "prices": [
+            22
+          ],
+          "description": "خبز محشو باللحم المفروم، يُحمّص حتى يصبح مقرمشًا.",
+          "photoPrompt": "crispy triangular grilled pita pockets visibly stuffed with minced meat"
+        }
+      ]
+    },
+    {
+      "id": "pottery",
+      "name": "الفخاريات والطواجن",
+      "items": [
+        {
+          "id": "tomato-kofta",
+          "name": "كفتة بالطماطم",
+          "prices": [
+            30
+          ],
+          "description": "كفتة لحم مع صلصة الطماطم.",
+          "photoPrompt": "oval minced meat kofta patties in bright tomato sauce on dark shallow plate"
+        },
+        {
+          "id": "pomegranate-kofta",
+          "name": "كفتة بالرمان",
+          "prices": [
+            30
+          ],
+          "description": "كفتة لحم بطابع حامض وحلو من الرمان.",
+          "photoPrompt": "minced meat kofta patties glazed with pomegranate molasses and a few arils"
+        },
+        {
+          "id": "tahini-kofta",
+          "name": "كفتة بالطحينة",
+          "prices": [
+            30
+          ],
+          "description": "كفتة لحم مع صلصة الطحينة الكريمية.",
+          "photoPrompt": "minced meat kofta patties in creamy pale tahini sauce, dark plate"
+        },
+        {
+          "id": "tomato-kofta-pot",
+          "name": "فخار كفتة بالطماطم",
+          "prices": [
+            30
+          ],
+          "description": "كفتة لحم بالطماطم تُقدَّم في طبق فخاري.",
+          "photoPrompt": "brown round rustic clay pot of baked meat kofta and red tomato sauce"
+        },
+        {
+          "id": "pomegranate-kofta-pot",
+          "name": "فخار كفتة بالرمان",
+          "prices": [
+            30
+          ],
+          "description": "كفتة لحم بالرمان تُقدَّم في طبق فخاري.",
+          "photoPrompt": "brown round rustic clay pot of kofta with dark pomegranate glaze"
+        },
+        {
+          "id": "tahini-kofta-pot",
+          "name": "فخار كفتة بالطحينة",
+          "prices": [
+            30
+          ],
+          "description": "كفتة لحم بصلصة الطحينة تُقدَّم في طبق فخاري.",
+          "photoPrompt": "brown round rustic clay pot of baked kofta under light tahini sauce",
+          "notes": "السطر نفسه مطبوع مرتين بالسعر نفسه. عُرض كبند واحد إلى أن يتضح إن كان أحد السطرين يشير إلى صنف آخر."
+        },
+        {
+          "id": "ghadeer-chicken-pot",
+          "name": "فخار الغدير بالدجاج في الفرن",
+          "prices": [
+            25
+          ],
+          "description": "طبق الغدير الفخاري بالدجاج المطهو في الفرن.",
+          "photoPrompt": "signature rustic clay casserole of oven-roasted golden chicken pieces"
+        }
+      ]
+    },
+    {
+      "id": "fish",
+      "name": "الأسماك",
+      "items": [
+        {
+          "id": "fried-fish",
+          "name": "سمك مقلي",
+          "prices": [
+            25
+          ],
+          "description": "طبق سمك مقلي بطبقة خارجية ذهبية.",
+          "photoPrompt": "crispy deep fried whole fish, very golden, on oval white platter"
+        },
+        {
+          "id": "grilled-fish",
+          "name": "سمك مشوي",
+          "prices": [
+            25
+          ],
+          "description": "طبق سمك مشوي بسطح محمّر.",
+          "photoPrompt": "charcoal grilled whole fish, visible black grill marks, on oval plate"
+        }
+      ]
+    },
+    {
+      "id": "rice",
+      "name": "الأرز",
+      "items": [
+        {
+          "id": "peshawar-rice",
+          "name": "أرز بشاور",
+          "prices": [
+            8
+          ],
+          "description": "طبق من أرز البشاور طويل الحبة.",
+          "photoPrompt": "white fluffy Peshawar-style long grain basmati rice in a bowl, rice only"
+        },
+        {
+          "id": "half-charcoal-chicken-rice",
+          "name": "نصف دجاجة على الفحم مع الأرز",
+          "prices": [
+            25
+          ],
+          "description": "نصف دجاجة مشوية على الفحم مع الأرز.",
+          "photoPrompt": "half split charcoal chicken on a generous bed of long grain rice"
+        },
+        {
+          "id": "quarter-tawook-rice",
+          "name": "ربع شيش طاووق مع الأرز",
+          "prices": [
+            17
+          ],
+          "description": "وجبة ربع شيش طاووق مع الأرز.",
+          "photoPrompt": "small portion of grilled reddish chicken tawook chunks or a single skewer with fluffy long grain rice"
+        },
+        {
+          "id": "fish-rice",
+          "name": "سمك مع الأرز",
+          "prices": [
+            30
+          ],
+          "description": "وجبة سمك تُقدَّم مع الأرز.",
+          "photoPrompt": "golden cooked fish served over long grain rice, oval white plate"
+        },
+        {
+          "id": "half-charcoal-chicken",
+          "name": "نصف دجاجة على الفحم بدون أرز",
+          "prices": [
+            20
+          ],
+          "description": "نصف دجاجة مشوية على الفحم دون أرز.",
+          "photoPrompt": "half split charcoal grilled chicken without rice, on a clean white plate"
+        }
+      ]
+    },
+    {
+      "id": "salads",
+      "name": "السلطات والمقبلات",
+      "items": [
+        {
+          "id": "mixed-appetizers",
+          "name": "مشكل مقبلات",
+          "prices": [
+            10,
+            15
+          ],
+          "description": "تشكيلة من مقبلات المطعم في طبق واحد.",
+          "photoPrompt": "assorted Middle Eastern mezze plate with five small portions including hummus, eggplant dip and chopped greens"
+        },
+        {
+          "id": "mutabbal",
+          "name": "متبل",
+          "prices": [
+            8
+          ],
+          "description": "مقبلات من الباذنجان المهروس بنكهة مدخّنة.",
+          "photoPrompt": "creamy smoked eggplant mutabbal in a bowl, light beige, olive oil"
+        },
+        {
+          "id": "hummus",
+          "name": "حمص",
+          "prices": [
+            8
+          ],
+          "description": "حمص مهروس بقوام ناعم يُقدَّم كمقبّل.",
+          "photoPrompt": "smooth chickpea hummus in bowl with spiral and a few chickpeas"
+        },
+        {
+          "id": "baba-ghanouj",
+          "name": "بابا غنوج",
+          "prices": [
+            8
+          ],
+          "description": "مقبلات باذنجان مشوي بقوام خشن نسبيًا.",
+          "photoPrompt": "chunky roasted eggplant baba ghanoush mezze with tiny vegetable pieces"
+        },
+        {
+          "id": "tabbouleh",
+          "name": "تبولة",
+          "prices": [
+            8
+          ],
+          "description": "سلطة بقدونس مفروم بقوام خفيف ونكهة منعشة.",
+          "photoPrompt": "bright chopped parsley tabbouleh with fine bulgur and finely diced tomato"
+        },
+        {
+          "id": "spicy-romiya-salad",
+          "name": "سلطة رومية حارة",
+          "prices": [
+            8
+          ],
+          "description": "سلطة رومية على طريقة المطعم بنكهة حارة.",
+          "photoPrompt": "finely chopped spicy Levantine salad, vivid red peppers and tomato in shallow bowl"
+        },
+        {
+          "id": "cold-romiya-salad",
+          "name": "سلطة رومية باردة",
+          "prices": [
+            8
+          ],
+          "description": "سلطة رومية تُقدَّم باردة.",
+          "photoPrompt": "chilled finely chopped Levantine salad, tomato and cucumber in shallow white bowl"
+        },
+        {
+          "id": "turkish-salad",
+          "name": "سلطة تركية",
+          "prices": [
+            8
+          ],
+          "description": "سلطة خضار مفرومة على الطريقة التركية.",
+          "photoPrompt": "Turkish-style finely chopped tomato pepper and herb salad in shallow white bowl"
+        },
+        {
+          "id": "olive-salad",
+          "name": "سلطة زيتون",
+          "prices": [
+            8
+          ],
+          "description": "سلطة خضار وزيتون مقطّع.",
+          "photoPrompt": "green and black sliced olive salad with colorful finely diced vegetables"
+        },
+        {
+          "id": "fattoush",
+          "name": "فتوش",
+          "prices": [
+            8
+          ],
+          "description": "سلطة خضار مع قطع خبز محمّصة.",
+          "photoPrompt": "Lebanese fattoush, chopped greens tomatoes cucumbers and crisp pita chips"
+        },
+        {
+          "id": "yogurt-cucumber",
+          "name": "روب بالخيار",
+          "prices": [
+            6
+          ],
+          "description": "مقبل بارد يجمع الروب والخيار.",
+          "photoPrompt": "white yogurt and chopped cucumber in a bowl, subtle herbs"
+        }
+      ]
+    },
+    {
+      "id": "meals",
+      "name": "الوجبات",
+      "items": [
+        {
+          "id": "chicken-burger",
+          "name": "برجر دجاج",
+          "prices": [
+            12
+          ],
+          "description": "ساندويتش برجر بقطعة دجاج داخل خبز البرجر.",
+          "photoPrompt": "chicken patty burger on soft bun with light garnish, hero sandwich"
+        },
+        {
+          "id": "meat-burger",
+          "name": "برجر لحم",
+          "prices": [
+            12
+          ],
+          "description": "ساندويتش برجر بقطعة لحم داخل خبز البرجر.",
+          "photoPrompt": "grilled meat patty burger on soft bun, hero sandwich"
+        },
+        {
+          "id": "shawarma-plate",
+          "name": "صحن شاورما",
+          "prices": [
+            20
+          ],
+          "description": "شاورما مقطّعة تُقدَّم في صحن.",
+          "photoPrompt": "plated thin shaved shawarma meat, with visual presentation like a Middle Eastern restaurant platter"
+        },
+        {
+          "id": "arabic-shawarma",
+          "name": "شاورما عربي",
+          "prices": [
+            17
+          ],
+          "description": "لفّة شاورما مقطّعة إلى قطع على الطريقة العربية.",
+          "photoPrompt": "toasted Arabic shawarma wrap cut into several bite-size pieces, exposed filling"
+        },
+        {
+          "id": "long-shawarma",
+          "name": "شاورما صاروخ",
+          "prices": [
+            12
+          ],
+          "description": "لفّة شاورما طويلة بخبز رقيق.",
+          "photoPrompt": "single extra-long thin shawarma wrap, diagonal, toasted exterior and open cross section"
+        },
+        {
+          "id": "long-cheese-shawarma",
+          "name": "شاورما صاروخ بالجبنة",
+          "prices": [
+            13
+          ],
+          "description": "لفّة شاورما طويلة مع الجبنة.",
+          "photoPrompt": "single extra-long thin shawarma wrap cut to reveal shawarma meat and melted cheese"
+        },
+        {
+          "id": "small-shawarma",
+          "name": "شاورما صغير",
+          "prices": [
+            6
+          ],
+          "description": "ساندويتش شاورما بحجم صغير.",
+          "photoPrompt": "one small compact toasted shawarma wrap with simple exposed filling"
+        },
+        {
+          "id": "small-cheese-shawarma",
+          "name": "شاورما صغير بالجبنة",
+          "prices": [
+            7
+          ],
+          "description": "ساندويتش شاورما صغير مع الجبنة.",
+          "photoPrompt": "one small compact toasted shawarma wrap with visible melted cheese"
+        },
+        {
+          "id": "small-fries",
+          "name": "بطاطس شيبس صغيرة",
+          "prices": [
+            7
+          ],
+          "description": "حصة صغيرة من البطاطس المقلية.",
+          "photoPrompt": "small bowl of thin golden French fries only"
+        },
+        {
+          "id": "meat-kebab-sandwich",
+          "name": "ساندويتش كباب لحم",
+          "prices": [
+            17
+          ],
+          "description": "ساندويتش كباب لحم مشوي في خبز ملفوف.",
+          "photoPrompt": "flatbread sandwich with visible dark grilled ground meat kebab"
+        },
+        {
+          "id": "chicken-kebab-sandwich",
+          "name": "ساندويتش كباب دجاج",
+          "prices": [
+            15
+          ],
+          "description": "ساندويتش كباب دجاج مشوي في خبز ملفوف.",
+          "photoPrompt": "flatbread sandwich with visible golden ground chicken kebab"
+        },
+        {
+          "id": "shish-tawook-sandwich",
+          "name": "ساندويتش شيش طاووق",
+          "prices": [
+            15
+          ],
+          "description": "ساندويتش بقطع دجاج شيش طاووق مشوية.",
+          "photoPrompt": "flatbread wrap with visible reddish grilled chicken tawook chunks"
+        }
+      ]
+    },
+    {
+      "id": "breakfast",
+      "name": "الفطور",
+      "items": [
+        {
+          "id": "mixed-offal",
+          "name": "مشكل كبدة وكلاوي وقلوب",
+          "prices": [
+            17
+          ],
+          "description": "طبق يجمع الكبدة والكلاوي والقلوب المطهوة.",
+          "photoPrompt": "savory sautéed mixed liver kidneys and hearts, distinguish different textures, in small skillet"
+        },
+        {
+          "id": "meat-mutabbal",
+          "name": "متبل باللحم",
+          "prices": [
+            17
+          ],
+          "description": "متبل الباذنجان مع اللحم.",
+          "photoPrompt": "creamy eggplant mutabbal topped with browned chopped meat"
+        },
+        {
+          "id": "meat-hummus",
+          "name": "حمص باللحم",
+          "prices": [
+            17
+          ],
+          "description": "حمص مهروس يُقدَّم مع اللحم.",
+          "photoPrompt": "creamy chickpea hummus topped with browned chopped meat"
+        },
+        {
+          "id": "liver",
+          "name": "كبدة",
+          "prices": [
+            17
+          ],
+          "description": "قطع كبدة مطهوة ومتبلّة.",
+          "photoPrompt": "sautéed liver pieces, brown with restrained pepper in a skillet"
+        },
+        {
+          "id": "cheese-liver",
+          "name": "كبدة بالجبن",
+          "prices": [
+            19
+          ],
+          "description": "كبدة مطهوة تُقدَّم مع الجبن.",
+          "photoPrompt": "sautéed liver pieces with melted cheese visible on top"
+        },
+        {
+          "id": "cheese-tomato-meat",
+          "name": "لحم بالطماطم والجبن",
+          "prices": [
+            19
+          ],
+          "description": "لحم مطهو مع الطماطم والجبن.",
+          "photoPrompt": "sautéed chopped meat in tomato sauce with melted white cheese in skillet"
+        },
+        {
+          "id": "tomato-meat",
+          "name": "لحم بالطماطم",
+          "prices": [
+            17
+          ],
+          "description": "طبق لحم مطهو مع الطماطم.",
+          "photoPrompt": "sautéed chopped meat and tomatoes in red sauce in skillet"
+        },
+        {
+          "id": "sauteed-vegetables",
+          "name": "خضار محموسة",
+          "prices": [
+            8
+          ],
+          "description": "خضار مشكّلة محموسة على النار.",
+          "photoPrompt": "sautéed chopped mixed vegetables in small skillet, bell peppers and onion"
+        },
+        {
+          "id": "shakshuka",
+          "name": "شكشوكة",
+          "prices": [
+            8
+          ],
+          "description": "بيض مطهو مع الطماطم على طريقة الشكشوكة.",
+          "photoPrompt": "two eggs cooked in red tomato sauce in a small skillet, distinct yolks"
+        },
+        {
+          "id": "plain-eggs",
+          "name": "بيض سادة",
+          "prices": [
+            8
+          ],
+          "description": "طبق بيض سادة دون إضافات مدرجة في القائمة.",
+          "photoPrompt": "plain simple cooked scrambled eggs on a plate"
+        },
+        {
+          "id": "meat-eggs",
+          "name": "بيض باللحم",
+          "prices": [
+            17
+          ],
+          "description": "طبق بيض مطهو مع اللحم.",
+          "photoPrompt": "scrambled eggs with browned minced meat in small pan"
+        },
+        {
+          "id": "cheese-eggs",
+          "name": "بيض بالجبنة",
+          "prices": [],
+          "description": "طبق بيض مطهو مع الجبنة.",
+          "photoPrompt": "soft scrambled eggs with melted cheese in a small skillet",
+          "notes": "يظهر مكان السعر التسلسل «8127» دون فواصل واضحة. السعر يحتاج إلى تأكيد."
+        },
+        {
+          "id": "fried-eggs",
+          "name": "بيض عيون",
+          "prices": [
+            8
+          ],
+          "description": "بيض مقلي يُقدَّم بصفار ظاهر.",
+          "photoPrompt": "two sunny side up fried eggs with bright intact yolks"
+        },
+        {
+          "id": "lentil-soup",
+          "name": "شوربة عدس",
+          "prices": [
+            8
+          ],
+          "description": "شوربة عدس دافئة بقوام ناعم.",
+          "photoPrompt": "golden orange Middle Eastern lentil soup in ceramic bowl"
+        },
+        {
+          "id": "cheese-plate",
+          "name": "صحن جبن",
+          "prices": [
+            8
+          ],
+          "description": "صحن جبن يُقدَّم ضمن قائمة الفطور.",
+          "photoPrompt": "simple dish of sliced and cubed white Middle Eastern breakfast cheese"
+        },
+        {
+          "id": "tuna-plate",
+          "name": "صحن تونة",
+          "prices": [
+            10
+          ],
+          "description": "صحن تونة يُقدَّم ضمن قائمة الفطور.",
+          "photoPrompt": "plate of flaked tuna with restrained simple garnish"
+        }
+      ]
+    },
+    {
+      "id": "sandwiches",
+      "name": "الساندويتشات",
+      "items": [
+        {
+          "id": "mutabbal-meat-sandwich",
+          "name": "ساندويتش متبل باللحم",
+          "prices": [
+            8
+          ],
+          "description": "ساندويتش يجمع متبل الباذنجان واللحم.",
+          "photoPrompt": "cut flatbread sandwich showing creamy smoked eggplant and browned meat filling"
+        },
+        {
+          "id": "hummus-meat-sandwich",
+          "name": "ساندويتش حمص باللحم",
+          "prices": [
+            8
+          ],
+          "description": "ساندويتش يجمع الحمص المهروس واللحم.",
+          "photoPrompt": "cut flatbread sandwich with chickpea hummus and browned meat filling visible"
+        },
+        {
+          "id": "tomato-meat-sandwich",
+          "name": "ساندويتش لحم بالطماطم",
+          "prices": [
+            8
+          ],
+          "description": "ساندويتش محشو باللحم المطهو مع الطماطم.",
+          "photoPrompt": "cut flatbread sandwich filled with tomato and cooked chopped meat"
+        },
+        {
+          "id": "shakshuka-sandwich",
+          "name": "ساندويتش شكشوكة",
+          "prices": [
+            5
+          ],
+          "description": "ساندويتش محشو بالبيض والطماطم على طريقة الشكشوكة.",
+          "photoPrompt": "cut pita sandwich filled with cooked egg and tomato shakshuka"
+        },
+        {
+          "id": "liver-sandwich",
+          "name": "ساندويتش كبدة",
+          "prices": [
+            8
+          ],
+          "description": "ساندويتش محشو بالكبدة المطهوة.",
+          "photoPrompt": "cut flatbread sandwich with browned sautéed liver filling"
+        },
+        {
+          "id": "mixed-sandwich",
+          "name": "ساندويتش مشكل",
+          "prices": [
+            8
+          ],
+          "description": "ساندويتش بحشوة مشكلة على طريقة المطعم.",
+          "photoPrompt": "cut Middle Eastern flatbread wrap with mixed savory filling, neutral garnish"
+        }
+      ]
+    },
+    {
+      "id": "stews",
+      "name": "الإيدامات",
+      "items": [
+        {
+          "id": "mixed-vegetable-stew",
+          "name": "إيدام خضار مشكل",
+          "prices": [
+            8
+          ],
+          "description": "خضار مشكّلة مطهوة على طريقة الإيدام.",
+          "photoPrompt": "small deep bowl of tomato-based mixed vegetable stew, colorful tender chunks"
+        },
+        {
+          "id": "meat-moussaka",
+          "name": "مسقعة باللحم",
+          "prices": [
+            12
+          ],
+          "description": "مسقعة باذنجان مطهوة مع اللحم.",
+          "photoPrompt": "small casserole of Middle Eastern eggplant moussaka with minced meat and tomato"
+        }
+      ]
+    },
+    {
+      "id": "hot-drinks",
+      "name": "المشروبات الساخنة",
+      "items": [
+        {
+          "id": "black-tea",
+          "name": "شاي عادي",
+          "prices": [
+            1
+          ],
+          "description": "كوب شاي أسود ساخن.",
+          "photoPrompt": "plain clear amber black tea in a small transparent cup, no milk"
+        },
+        {
+          "id": "steam-tea",
+          "name": "شاي بخار",
+          "prices": [
+            1
+          ],
+          "description": "شاي ساخن يُقدَّم على طريقة شاي البخار.",
+          "photoPrompt": "small glass of rich amber brewed tea with visible rising steam, no milk"
+        },
+        {
+          "id": "milk-tea",
+          "name": "شاي بالحليب",
+          "prices": [
+            2
+          ],
+          "description": "شاي ساخن ممزوج بالحليب.",
+          "photoPrompt": "small clear glass of creamy beige milk tea"
+        }
+      ]
+    },
+    {
+      "id": "cold-drinks",
+      "name": "المشروبات الغازية والمياه",
+      "items": [
+        {
+          "id": "small-soft-drink",
+          "name": "مشروب غازي صغير",
+          "prices": [],
+          "description": "مشروب غازي بالحجم الصغير من الأصناف المتوفرة لدى المطعم.",
+          "photoPrompt": "small chilled blue generic soda can without text or logo",
+          "notes": "السعر غير ظاهر بوضوح في الصورة. القائمة تسميه «منتجات البيبسي صغير»."
+        },
+        {
+          "id": "large-soft-drink",
+          "name": "مشروب غازي كبير",
+          "prices": [
+            9
+          ],
+          "description": "مشروب غازي بالحجم الكبير من الأصناف المتوفرة لدى المطعم.",
+          "photoPrompt": "large chilled dark cola plastic bottle with plain blue label, no text",
+          "notes": "القائمة تسميه «منتجات البيبسي كبير»."
+        },
+        {
+          "id": "small-water",
+          "name": "ماء صغير",
+          "prices": [
+            1
+          ],
+          "description": "عبوة مياه بحجم صغير.",
+          "photoPrompt": "one small clear plastic water bottle with blue cap, no labels"
+        }
+      ]
+    }
+  ]
+}
