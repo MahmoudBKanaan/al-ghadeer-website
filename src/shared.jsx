@@ -35,7 +35,7 @@ export function Logo({ className = '', alt = '' }) {
 }
 
 export function RestaurantName() {
-  return <bdi className="restaurant-name" dir="ltr">{restaurant.name}</bdi>;
+  return <bdi className="restaurant-name" dir="rtl">{restaurant.name}</bdi>;
 }
 
 export function MenuHours() {

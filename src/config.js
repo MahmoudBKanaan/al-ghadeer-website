@@ -21,8 +21,8 @@ export const restaurant = {
   },
 };
 
-// Isolate the left-to-right name where HTML direction attributes are unavailable.
-export const restaurantNameText = '\u2066' + restaurant.name + '\u2069';
+// Isolate the right-to-left name where HTML direction attributes are unavailable.
+export const restaurantNameText = '\u2067' + restaurant.name + '\u2069';
 
 export const navigation = [
   { path: '/', label: 'الرئيسية', key: 'home' },
