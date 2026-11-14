@@ -75,7 +75,7 @@ export function LocationsPage() {
   return <>
     <PageHeading label="موقع المطعم" title="الفروع" text={`زورونا في ${restaurant.district}، ${restaurant.city}.`} />
     <article className="location-card">
-      <div className="map-art" aria-hidden="true"><span className="map-road road-a"/><span className="map-road road-b"/><span className="map-road road-c"/><span className="map-marker"><MapPin size={43} /></span><span className="map-caption">{restaurant.district}</span></div>
+      <div className="map-art" aria-hidden="true"><span className="map-marker"><MapPin size={43} /></span><span className="map-caption">{restaurant.district}</span></div>
       <div className="location-content">
         <p className="eyebrow"><span aria-hidden="true" />نرحّب بكم</p>
         <h2><RestaurantName /> · {restaurant.district}</h2>
