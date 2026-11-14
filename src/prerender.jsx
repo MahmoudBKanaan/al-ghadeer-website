@@ -1,7 +1,7 @@
 import { renderToString } from 'react-dom/server';
 import { App, allRoutes } from './site.jsx';
 import { categories, itemPath, variantsFor } from './catalog.js';
-import { href, restaurant } from './config.js';
+import { href, restaurant, restaurantNameText } from './config.js';
 
 const arabicLocale = 'ar-SA';
 const schemaContext = 'https://schema.org';
@@ -94,7 +94,7 @@ function schemaFor(route, siteUrl) {
     const menuId = `${url}#menu`;
     page.mainEntity = { '@id': menuId };
     graph.push({
-      '@type': 'Menu', '@id': menuId, name: `قائمة ${restaurant.name}`, url, inLanguage: arabicLocale,
+      '@type': 'Menu', '@id': menuId, name: `قائمة ${restaurantNameText}`, url, inLanguage: arabicLocale,
       hasMenuSection: categories.map(category => ({
         '@type': 'MenuSection', name: category.name, url: `${url}#${category.id}`,
         hasMenuItem: category.items.map(item => menuItemSchema(item, siteUrl)),
@@ -124,12 +124,12 @@ function pageHead(route, siteUrl) {
 
   const url = absolute(route.path, siteUrl);
   const image = route.item ? `/images/menu/${route.item.id}.webp` : '/images/brand/hero.webp';
-  const alt = route.item ? `صورة توضيحية لصنف ${route.item.name}` : 'صورة توضيحية لمشويات مطعم الغدير';
+  const alt = route.item ? `صورة توضيحية لصنف ${route.item.name}` : `صورة توضيحية للمشويات من ${restaurantNameText}`;
   return [...head,
     meta('robots', 'index, follow, max-image-preview:large'),
     `<link rel="canonical" href="${escapeHtml(url)}">`,
     ...Object.entries({
-      'og:type': 'website', 'og:locale': 'ar_SA', 'og:site_name': restaurant.name,
+      'og:type': 'website', 'og:locale': 'ar_SA', 'og:site_name': restaurantNameText,
       'og:title': route.title, 'og:description': route.description, 'og:url': url,
       'og:image': absolute(image, siteUrl), 'og:image:alt': alt,
     }).map(([name, value]) => meta(name, value, 'property')),

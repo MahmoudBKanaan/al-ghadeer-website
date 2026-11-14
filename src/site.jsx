@@ -1,4 +1,4 @@
-import { href, routePath } from './config.js';
+import { href, restaurant, restaurantNameText, routePath } from './config.js';
 import { itemById, itemPath, items } from './catalog.js';
 import { CartBar, useCart } from './cart.jsx';
 import { ItemPage, MenuPage } from './menu.jsx';
@@ -6,14 +6,14 @@ import { ContactPage, HomePage, LocationsPage, NotFoundPage, StoryPage } from '.
 import { Footer, Header, Tapes, useTapeMotion } from './shared.jsx';
 
 const pages = {
-  '/': { key: 'home', component: HomePage, title: 'مطعم الغدير في حفر الباطن | مشويات وأطباق شرقية', description: 'مطعم الغدير في حي النهضة بحفر الباطن. قائمة مشويات وطواجن وأطباق شرقية، جلسات للأفراد والعائلات، وسفري وتوصيل مجاني عبر واتساب.' },
-  '/story/': { key: 'story', component: StoryPage, title: 'قصتنا | مطعم الغدير في حفر الباطن', description: 'تعرّف على مطعم الغدير في حي النهضة بحفر الباطن، وتصفّح خيارات الطعام وجلسات الأفراد والعائلات والطلبات السفري والتوصيل.' },
-  '/menu/': { key: 'menu', component: MenuPage, title: 'قائمة الطعام والأسعار | مطعم الغدير في حفر الباطن', description: 'تصفّح قائمة مطعم الغدير بحفر الباطن. المشويات، الطواجن، الأرز، الفطور، الوجبات، الساندويتشات والمشروبات مع تفاصيل الأحجام والأسعار.' },
-  '/locations/': { key: 'locations', component: LocationsPage, title: 'موقع الفرع وساعات العمل | مطعم الغدير', description: 'موقع مطعم الغدير في حي النهضة بحفر الباطن. نرحّب بكم يوميًا من ١٢ ظهرًا إلى ١٢ منتصف الليل، مع جلسات للأفراد والعائلات.' },
-  '/contact/': { key: 'contact', component: ContactPage, title: 'واتساب ورقم التواصل | مطعم الغدير في حفر الباطن', description: 'اتصل أو اطلب من مطعم الغدير عبر واتساب على 0501083083. طلبات سفري وتوصيل مجاني في حفر الباطن.' },
+  '/': { key: 'home', component: HomePage, title: `${restaurantNameText} في حفر الباطن | مشويات وأطباق شرقية`, description: `${restaurantNameText} في حي النهضة بحفر الباطن. قائمة مشويات وطواجن وأطباق شرقية، وجلسات للأفراد فقط، وسفري وتوصيل مجاني عبر واتساب.` },
+  '/story/': { key: 'story', component: StoryPage, title: `قصتنا | ${restaurantNameText} في حفر الباطن`, description: `تعرّف على ${restaurantNameText} في حي النهضة بحفر الباطن، وتصفّح خيارات الطعام وجلسات الأفراد والطلبات السفري والتوصيل.` },
+  '/menu/': { key: 'menu', component: MenuPage, title: `قائمة الطعام والأسعار | ${restaurantNameText} في حفر الباطن`, description: `تصفّح قائمة ${restaurantNameText} بحفر الباطن. ${restaurant.breakfastHoursText}، و${restaurant.mainMenuHoursText}.` },
+  '/locations/': { key: 'locations', component: LocationsPage, title: `موقع الفرع وساعات العمل | ${restaurantNameText}`, description: `موقع ${restaurantNameText} في حي النهضة بحفر الباطن. نرحّب بكم ${restaurant.hoursText}، مع جلسات للأفراد فقط.` },
+  '/contact/': { key: 'contact', component: ContactPage, title: `واتساب ورقم التواصل | ${restaurantNameText} في حفر الباطن`, description: `اتصل أو اطلب من ${restaurantNameText} عبر واتساب على ${restaurant.phoneDisplay}. طلبات سفري وتوصيل مجاني في حفر الباطن.` },
 };
 
-const notFound = { path: '/404.html', key: '404', component: NotFoundPage, title: 'الصفحة غير موجودة | مطعم الغدير', description: 'الصفحة المطلوبة غير متاحة. تصفّح قائمة مطعم الغدير أو عد إلى الصفحة الرئيسية.' };
+const notFound = { path: '/404.html', key: '404', component: NotFoundPage, title: `الصفحة غير موجودة | ${restaurantNameText}`, description: 'الصفحة المطلوبة غير متاحة. تصفّح قائمة الطعام أو عد إلى الصفحة الرئيسية.' };
 
 export function getRoute(pathname) {
   const path = routePath(pathname);
@@ -22,8 +22,8 @@ export function getRoute(pathname) {
   const id = /^\/menu\/([a-z0-9-]+)$/.exec(path)?.[1];
   const item = itemById.get(id);
   if (item) return { path: itemPath(item), key: 'item', component: ItemPage, item,
-    title: `${item.name} | مطعم الغدير في حفر الباطن`,
-    description: `${item.description} اطّلع على الحجم والسعر وطرق الطلب من مطعم الغدير في حفر الباطن.` };
+    title: `${item.name} | ${restaurantNameText} في حفر الباطن`,
+    description: `${item.description} اطّلع على الحجم والسعر وطرق الطلب من ${restaurantNameText} في حفر الباطن.` };
   return notFound;
 }
 

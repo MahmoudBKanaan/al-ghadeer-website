@@ -1,13 +1,31 @@
 import menu from './menu-data.json';
-import { href } from './config.js';
+import { href, restaurant } from './config.js';
 
-export const categories = menu.categories;
-export const items = categories.flatMap(category => category.items.map(item => ({
-  ...item,
-  categoryId: category.id,
-  categoryName: category.name,
-})));
+export const categories = menu.categories.map(category => ({
+  ...category,
+  items: category.items.map(item => ({
+    ...item,
+    categoryId: category.id,
+    categoryName: category.name,
+  })),
+}));
+export const items = categories.flatMap(category => category.items);
 export const itemById = new Map(items.map(item => [item.id, item]));
+
+const restaurantClock = new Intl.DateTimeFormat('en-GB', {
+  timeZone: 'Asia/Riyadh', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+});
+
+export function currentMenuService(now = new Date()) {
+  const time = restaurantClock.format(now);
+  if (time >= restaurant.opens && time < restaurant.breakfastEnds) return 'breakfast';
+  if (time >= restaurant.breakfastEnds || time < restaurant.closes) return 'main';
+  return null;
+}
+
+export function isItemAvailable(item, service) {
+  return service === (item.categoryId === 'breakfast' ? 'breakfast' : 'main');
+}
 
 const sizeLabels = {
   1: ['حجم واحد'],

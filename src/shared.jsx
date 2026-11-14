@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import {
   ArrowLeft, Bean, CakeSlice, Candy, Cherry, Coffee, Cookie, Croissant, CupSoda, Donut,
-  IceCreamBowl, Instagram, Leaf, MapPin, Menu, Mountain, Pause, Phone, Pizza, Play,
+  IceCreamBowl, Leaf, MapPin, Menu, Mountain, Pause, Phone, Pizza, Play,
   Popcorn, Sandwich, Soup, Sprout, UtensilsCrossed, Wheat, X,
 } from 'lucide-react';
-import { href, navigation, restaurant, socials, whatsappUrl } from './config.js';
+import { href, navigation, restaurant, restaurantNameText, socials, whatsappUrl } from './config.js';
 
 const tapeIcons = [Coffee, Croissant, Leaf, CupSoda, Bean, Sandwich, Sprout, Cookie, Mountain, Soup,
   Cherry, CakeSlice, Wheat, Donut, Pizza, Candy, IceCreamBowl, Popcorn, UtensilsCrossed];
@@ -24,7 +24,7 @@ function SnapchatIcon() {
   return <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3.7c-3.5 0-5 2.5-5 5.4 0 .6 0 1.3.1 2-.8.4-1.9-.5-2.3.3-.4.7.7 1.3 1.5 1.5 0 1.6-1.7 3.4-3.3 3.7-.1.6 1.5 1.1 2.6 1.2l.3 1c.1.4 1.6.1 2.2.2 1.5.3 2.2 1.3 3.9 1.3s2.4-1 3.9-1.3c.6-.1 2.1.2 2.2-.2l.3-1c1.1-.1 2.7-.6 2.6-1.2-1.6-.3-3.3-2.1-3.3-3.7.8-.2 1.9-.8 1.5-1.5-.4-.8-1.5.1-2.3-.3.1-.7.1-1.4.1-2 0-2.9-1.5-5.4-5-5.4Z" /></svg>;
 }
 
-const socialIcons = { instagram: Instagram, tiktok: TikTokIcon, snapchat: SnapchatIcon };
+const socialIcons = { tiktok: TikTokIcon, snapchat: SnapchatIcon };
 
 export function WhatsAppButton({ children = 'اطلب عبر واتساب', message = '', className = '' }) {
   return <a className={`button ${className}`} href={whatsappUrl(message)} target="_blank" rel="noopener noreferrer"><IconWhatsApp />{children}</a>;
@@ -32,6 +32,17 @@ export function WhatsAppButton({ children = 'اطلب عبر واتساب', mess
 
 export function Logo({ className = '', alt = '' }) {
   return <img className={className} src={href('/images/brand/logo.svg')} alt={alt} width="132" height="149" />;
+}
+
+export function RestaurantName() {
+  return <bdi className="restaurant-name" dir="ltr">{restaurant.name}</bdi>;
+}
+
+export function MenuHours() {
+  return <div className="menu-hours">
+    <p>{restaurant.breakfastHoursText}</p>
+    <p>{restaurant.mainMenuHoursText}</p>
+  </div>;
 }
 
 function NavLinks({ active }) {
@@ -43,8 +54,8 @@ function NavLinks({ active }) {
 export function Header({ active }) {
   return <header className="site-header">
     <div className="header-inner">
-      <a className="brand-lockup" href={href('/')} aria-label="مطعم الغدير، الرئيسية">
-        <Logo /><span><strong>{restaurant.name}</strong><small>{restaurant.city}</small></span>
+      <a className="brand-lockup" href={href('/')} aria-label={restaurantNameText + '، الرئيسية'}>
+        <Logo /><span><strong><RestaurantName /></strong><small>{restaurant.city}</small></span>
       </a>
       <nav className="desktop-nav" aria-label="التنقل الرئيسي"><NavLinks active={active} /></nav>
       <a className="button header-order" href={href('/menu/')}><UtensilsCrossed size={17} aria-hidden="true" />اطلب الآن</a>
@@ -101,28 +112,24 @@ export function PhoneLink({ className = '', label = 'اتصل بنا' }) {
   return <a className={className} href={`tel:${restaurant.phoneInternational}`}><Phone size={19} aria-hidden="true" /><span>{label}</span></a>;
 }
 
-export function SocialGrid({ explain = false }) {
-  return <div>
-    <div className="social-grid">
-      <WhatsAppButton className="button-light">واتساب</WhatsAppButton>
-      {socials.map(({ key, name }) => {
-        const Icon = socialIcons[key];
-        const url = restaurant.social[key];
-        return url ? <a className="button button-light" key={key} href={url} target="_blank" rel="noopener noreferrer"><Icon size={21} aria-hidden="true" />{name}</a>
-          : <span key={key} className="social-unavailable" title="الرابط الرسمي غير متاح حاليًا"><Icon size={21} aria-hidden="true" /><span>{name}</span><small>قريبًا</small></span>;
-      })}
-    </div>
-    {explain && socials.some(({ key }) => !restaurant.social[key]) && <p className="fine-print">تتوفر روابط الحسابات هنا بعد اعتمادها.</p>}
+export function SocialGrid() {
+  return <div className="social-grid">
+    <WhatsAppButton className="button-light">واتساب</WhatsAppButton>
+    {socials.map(({ key, name }) => {
+      const Icon = socialIcons[key];
+      const url = restaurant.social[key];
+      return url && <a className="button button-light" key={key} href={url} target="_blank" rel="noopener noreferrer"><Icon size={21} aria-hidden="true" />{name}</a>;
+    })}
   </div>;
 }
 
 export function Footer({ paused, onPause }) {
   return <footer className="site-footer">
     <div className="footer-inner">
-      <div className="footer-brand"><Logo /><div><strong>{restaurant.name}</strong><p>المشويات والأطباق الشرقية في {restaurant.city}.</p></div></div>
+      <div className="footer-brand"><Logo /><div><strong><RestaurantName /></strong><p>المشويات والأطباق الشرقية في {restaurant.city}.</p></div></div>
       <div className="footer-links"><a href={href('/locations/')}><MapPin size={17} aria-hidden="true" />{restaurant.district}، {restaurant.city}</a><PhoneLink label={<bdi>{restaurant.phoneDisplay}</bdi>} /><WhatsAppButton className="footer-whatsapp">واتساب</WhatsAppButton></div>
     </div>
-    <div className="footer-bottom"><span>جميع الحقوق محفوظة لمطعم الغدير</span><button type="button" className="motion-toggle" onClick={onPause} aria-pressed={paused}>{paused ? <Play size={14} /> : <Pause size={14} />}{paused ? 'تشغيل حركة الشريط' : 'إيقاف حركة الشريط'}</button></div>
+    <div className="footer-bottom"><span>جميع الحقوق محفوظة لدى <RestaurantName /></span><button type="button" className="motion-toggle" onClick={onPause} aria-pressed={paused}>{paused ? <Play size={14} /> : <Pause size={14} />}{paused ? 'تشغيل حركة الشريط' : 'إيقاف حركة الشريط'}</button></div>
   </footer>;
 }
 

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Minus, Plus, ShoppingBag, Trash2, X } from 'lucide-react';
-import { formatNumber, formatPrice, itemById, variantsFor } from './catalog.js';
+import { currentMenuService, formatNumber, formatPrice, isItemAvailable, itemById, variantsFor } from './catalog.js';
 import { IconWhatsApp } from './shared.jsx';
-import { whatsappUrl } from './config.js';
+import { restaurantNameText, whatsappUrl } from './config.js';
 
 const STORAGE_KEY = 'alghadeer-order-v1';
 const MAX_QUANTITY = 99;
@@ -26,9 +26,16 @@ export function useCart() {
   const [quantities, setQuantities] = useState({});
   const [loaded, setLoaded] = useState(false);
   const [feedback, setFeedback] = useState('');
+  const [service, setService] = useState(null);
   useEffect(() => {
     setQuantities(storedCart());
     setLoaded(true);
+  }, []);
+  useEffect(() => {
+    const refreshService = () => setService(currentMenuService());
+    refreshService();
+    const timer = window.setInterval(refreshService, 1000);
+    return () => window.clearInterval(timer);
   }, []);
   useEffect(() => {
     if (!loaded) return;
@@ -38,8 +45,11 @@ export function useCart() {
   const lines = Object.entries(quantities).map(([key, quantity]) => cartLine(key, quantity)).filter(Boolean);
   const count = lines.reduce((sum, line) => sum + line.quantity, 0);
   const total = lines.reduce((sum, line) => sum + line.variant.price * line.quantity, 0);
+  const canOrder = item => isItemAvailable(item, service);
+  const hasUnavailableItems = lines.some(({ item }) => !canOrder(item));
 
   function change(key, changeBy) {
+    if (changeBy > 0 && !isItemAvailable(itemById.get(key.split(':')[0]), currentMenuService())) return;
     setQuantities(current => {
       const quantity = Math.min(MAX_QUANTITY, (current[key] || 0) + changeBy);
       if (quantity > 0) return { ...current, [key]: quantity };
@@ -50,6 +60,7 @@ export function useCart() {
   }
 
   function add(item, variant) {
+    if (!isItemAvailable(item, currentMenuService())) return;
     const key = `${item.id}:${variant.id}`;
     if ((quantities[key] || 0) >= MAX_QUANTITY) {
       setFeedback(`الحد الأقصى لهذا الخيار ${formatNumber(MAX_QUANTITY)}.`);
@@ -59,12 +70,12 @@ export function useCart() {
     setFeedback(`أضيف ${item.name} إلى الطلب.`);
   }
 
-  return { lines, count, total, feedback, change, add, clear: () => setQuantities({}) };
+  return { lines, count, total, feedback, change, add, canOrder, hasUnavailableItems, clear: () => setQuantities({}) };
 }
 
 function orderMessage({ lines, total }) {
   return [
-    'السلام عليكم، أود طلب الأصناف التالية من مطعم الغدير:',
+    `السلام عليكم، أود طلب الأصناف التالية من ${restaurantNameText}:`,
     '',
     ...lines.map(({ item, variant, quantity }) => {
       const size = item.prices.length > 1 ? ` (${variant.name})` : '';
@@ -100,13 +111,20 @@ export function CartBar({ cart }) {
       {cart.lines.length ? <>
         <ul className="cart-lines">
           {cart.lines.map(({ key, item, variant, quantity }) => <li className="cart-line" key={key}>
-            <div><strong>{item.name}</strong><p>{variant.name} · {formatPrice(variant.price)}</p></div>
-            <div className="cart-quantity"><button type="button" aria-label={`خفض كمية ${item.name}، ${variant.name}`} onClick={() => cart.change(key, -1)}><Minus size={16} aria-hidden="true" /></button><span aria-label="الكمية">{formatNumber(quantity)}</span><button type="button" aria-label={`زيادة كمية ${item.name}، ${variant.name}`} disabled={quantity >= MAX_QUANTITY} onClick={() => cart.change(key, 1)}><Plus size={16} aria-hidden="true" /></button></div>
+            <div><strong>{item.name}</strong><p>{variant.name} · {formatPrice(variant.price)}</p>{!cart.canOrder(item) && <p>غير متاح للطلب الآن</p>}</div>
+            <div className="cart-quantity"><button type="button" aria-label={`خفض كمية ${item.name}، ${variant.name}`} onClick={() => cart.change(key, -1)}><Minus size={16} aria-hidden="true" /></button><span aria-label="الكمية">{formatNumber(quantity)}</span><button type="button" aria-label={`زيادة كمية ${item.name}، ${variant.name}`} disabled={quantity >= MAX_QUANTITY || !cart.canOrder(item)} onClick={() => cart.change(key, 1)}><Plus size={16} aria-hidden="true" /></button></div>
           </li>)}
         </ul>
         <div className="cart-total"><span>الإجمالي</span><strong>{formatPrice(cart.total)}</strong></div>
-        <p className="fine-print">تفتح الخطوة التالية رسالة جاهزة في واتساب. أرسلها ليؤكد المطعم طلبك.</p>
-        <div className="cart-actions"><a className="button button-red" href={whatsappUrl(orderMessage(cart))} target="_blank" rel="noopener noreferrer"><IconWhatsApp />إرسال الطلب عبر واتساب</a><button className="button button-light" type="button" onClick={cart.clear}><Trash2 size={18} aria-hidden="true" />إفراغ الطلب</button></div>
+        <p className="fine-print" role="status">{cart.hasUnavailableItems ? 'أزل الأصناف غير المتاحة الآن لإرسال طلبك.' : 'تفتح الخطوة التالية رسالة جاهزة في واتساب. أرسلها ليؤكد المطعم طلبك.'}</p>
+        <div className="cart-actions">
+          {cart.hasUnavailableItems ? <button className="button button-red" type="button" disabled><IconWhatsApp />إرسال الطلب عبر واتساب</button>
+            : <a className="button button-red" href={whatsappUrl(orderMessage(cart))} target="_blank" rel="noopener noreferrer" onClick={event => {
+              const currentService = currentMenuService();
+              if (cart.lines.some(({ item }) => !isItemAvailable(item, currentService))) event.preventDefault();
+            }}><IconWhatsApp />إرسال الطلب عبر واتساب</a>}
+          <button className="button button-light" type="button" onClick={cart.clear}><Trash2 size={18} aria-hidden="true" />إفراغ الطلب</button>
+        </div>
       </> : <div className="empty-state"><p>لم تضف أي صنف بعد.</p><button className="button button-light" type="button" onClick={close}>تابع تصفّح القائمة</button></div>}
     </dialog>
   </>;

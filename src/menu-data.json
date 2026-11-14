@@ -1,6 +1,6 @@
 {
   "brand": {
-    "name": "مطعم الغدير",
+    "name": "مطعم .S. الغدير",
     "nameShort": "الغدير",
     "aliases": [
       "Al Ghadeer Restaurant",
@@ -18,10 +18,10 @@
     "logo": "شعار أزرق أحادي اللون داخل إطار بيضاوي قائم. تظهر كلمة «الغدير» بخط عربي مرسوم، تليها ثلاثة أمواج أفقية، ثم حرف S داخل شكل حرف G."
   },
   "sourceNotes": [
-    "في الصورة 82 سطر صنف، منها تكرار مطابق واحد. القائمة الرقمية تضم 81 صنفًا مميزًا ضمن 11 قسمًا.",
+    "في الصورة 82 سطر صنف، منها تكرار مطابق واحد. تضم القائمة الرقمية 82 صنفًا ضمن 11 قسمًا بعد إضافة بيبسي وسط.",
     "يظهر رقم 8 إضافي في عمود أسعار الفطور الأيمن دون سطر مقابل. أُبقيت أسعار الأطباق بحسب سياق الصفوف الظاهرة إلى أن يُؤكّد التسعير.",
     "مشكل المشويات يحمل خمسة أسعار مدرجة، في حين لم تُحدد تسمية الحجم الخامس.",
-    "سعر البيض بالجبنة غير واضح ويظهر الرقم 8127 دون فواصل. سعر المشروب الغازي الصغير غير مقروء.",
+    "الأسعار المحدّثة للبيض بالجبنة والمشروب الغازي الصغير هي 10 ريالات و3 ريالات على التوالي.",
     "الصورة تحمل الاسم والمنطقة ورقم الاتصال، وتذكر أن خدمة التوصيل مجانية.",
     "الأوصاف تحريرية موجزة، وتحتاج المكونات الدقيقة والحساسيات وأحجام الحصص والتقديم إلى اعتماد المطعم."
   ],
@@ -51,7 +51,7 @@
             30
           ],
           "description": "أسياخ كباب من اللحم المفروم المتبّل والمشوي.",
-          "photoPrompt": "three grilled ground meat kebab logs, plate, restrained grilled vegetables"
+          "photoPrompt": "four grilled ground meat kebab skewers with restrained grilled vegetables"
         },
         {
           "id": "meat-kebab-tahini",
@@ -60,7 +60,7 @@
             30
           ],
           "description": "كباب لحم مشوي مع صلصة الطحينة.",
-          "photoPrompt": "grilled ground meat kebab logs topped with pale tahini drizzle"
+          "photoPrompt": "four grilled ground meat kebab skewers topped with pale tahini drizzle"
         },
         {
           "id": "meat-kebab-pomegranate",
@@ -69,7 +69,7 @@
             30
           ],
           "description": "كباب لحم مشوي بنكهة حامض الرمان.",
-          "photoPrompt": "grilled ground meat kebab logs with dark pomegranate molasses glaze and a few arils"
+          "photoPrompt": "four grilled ground meat kebab skewers with dark pomegranate molasses glaze and a few arils"
         },
         {
           "id": "chicken-kebab",
@@ -78,7 +78,7 @@
             25
           ],
           "description": "أسياخ كباب من الدجاج المفروم المتبّل والمشوي.",
-          "photoPrompt": "light golden grilled ground chicken kebab logs"
+          "photoPrompt": "four light golden grilled ground chicken kebab skewers"
         },
         {
           "id": "chicken-kebab-tahini",
@@ -87,7 +87,7 @@
             25
           ],
           "description": "كباب دجاج مشوي مع صلصة الطحينة.",
-          "photoPrompt": "golden grilled ground chicken kebab logs topped with pale tahini drizzle"
+          "photoPrompt": "four golden grilled ground chicken kebab skewers topped with pale tahini drizzle"
         },
         {
           "id": "chicken-kebab-pomegranate",
@@ -96,7 +96,7 @@
             25
           ],
           "description": "كباب دجاج مشوي بنكهة حامض الرمان.",
-          "photoPrompt": "golden grilled ground chicken kebab logs glazed with dark pomegranate molasses"
+          "photoPrompt": "four golden grilled ground chicken kebab skewers glazed with dark pomegranate molasses"
         },
         {
           "id": "hamees",
@@ -150,7 +150,7 @@
             35
           ],
           "description": "قطع ريش مشوية بملامح الشواء على السطح.",
-          "photoPrompt": "three grilled lamb rib chops with exposed bones, char and herbs"
+          "photoPrompt": "four grilled lamb rib chops with exposed bones, char and herbs"
         },
         {
           "id": "meat-arayes",
@@ -506,7 +506,7 @@
             17
           ],
           "description": "ساندويتش كباب لحم مشوي في خبز ملفوف.",
-          "photoPrompt": "flatbread sandwich with visible dark grilled ground meat kebab"
+          "photoPrompt": "open flatbread sandwich with four visible grilled ground meat kebab sticks"
         },
         {
           "id": "chicken-kebab-sandwich",
@@ -515,7 +515,7 @@
             15
           ],
           "description": "ساندويتش كباب دجاج مشوي في خبز ملفوف.",
-          "photoPrompt": "flatbread sandwich with visible golden ground chicken kebab"
+          "photoPrompt": "open flatbread sandwich with four visible golden ground chicken kebab sticks"
         },
         {
           "id": "shish-tawook-sandwich",
@@ -634,10 +634,12 @@
         {
           "id": "cheese-eggs",
           "name": "بيض بالجبنة",
-          "prices": [],
+          "prices": [
+            10
+          ],
           "description": "طبق بيض مطهو مع الجبنة.",
           "photoPrompt": "soft scrambled eggs with melted cheese in a small skillet",
-          "notes": "يظهر مكان السعر التسلسل «8127» دون فواصل واضحة. السعر يحتاج إلى تأكيد."
+          "notes": "يظهر مكان السعر في القائمة المصورة التسلسل «8127» دون فواصل واضحة."
         },
         {
           "id": "fried-eggs",
@@ -800,11 +802,22 @@
       "items": [
         {
           "id": "small-soft-drink",
-          "name": "مشروب غازي صغير",
-          "prices": [],
-          "description": "مشروب غازي بالحجم الصغير من الأصناف المتوفرة لدى المطعم.",
+          "name": "بيبسي صغير",
+          "prices": [
+            3
+          ],
+          "description": "مشروب بيبسي غازي بالحجم الصغير.",
           "photoPrompt": "small chilled blue generic soda can without text or logo",
-          "notes": "السعر غير ظاهر بوضوح في الصورة. القائمة تسميه «منتجات البيبسي صغير»."
+          "notes": "القائمة المصورة تسميه «منتجات البيبسي صغير»، ولا يظهر سعره فيها بوضوح."
+        },
+        {
+          "id": "medium-soft-drink",
+          "name": "بيبسي وسط",
+          "prices": [
+            5
+          ],
+          "description": "مشروب بيبسي غازي بالحجم الوسط.",
+          "photoPrompt": "tall blue medium-size Pepsi can with condensation on beige stone"
         },
         {
           "id": "large-soft-drink",

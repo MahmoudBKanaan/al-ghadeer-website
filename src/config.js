@@ -1,5 +1,5 @@
 export const restaurant = {
-  name: 'مطعم الغدير',
+  name: 'مطعم .S. الغدير',
   searchAliases: ['Al Ghadeer Restaurant', 'Al Ghadir Restaurant'],
   city: 'حفر الباطن',
   district: 'حي النهضة',
@@ -7,28 +7,22 @@ export const restaurant = {
   phoneDisplay: '0501083083',
   phoneInternational: '+966501083083',
   whatsapp: '966501083083',
-  hoursText: 'يوميًا من ١٢ ظهرًا إلى ١٢ منتصف الليل',
-  opens: '12:00',
-  closes: '00:00',
+  hoursText: 'يوميًا من ٦ صباحًا إلى ٢ صباحًا',
+  breakfastHoursText: 'الفطور من ٦ صباحًا إلى ١٢ ظهرًا',
+  mainMenuHoursText: 'بقية القائمة من ١٢ ظهرًا إلى ٢ صباحًا',
+  opens: '06:00',
+  breakfastEnds: '12:00',
+  closes: '02:00',
   currency: 'SAR',
-  exactMapUrl: '',
-  neighborhoodMapUrl: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('حي النهضة، حفر الباطن، المملكة العربية السعودية'),
+  exactMapUrl: 'https://maps.app.goo.gl/S2XXQPeVPtGXiUjE8',
   social: {
-    instagram: '',
-    tiktok: '',
-    snapchat: '',
+    tiktok: 'https://www.tiktok.com/@s.gadr?_r=1&_t=ZS-9BEIpVyo7SJ',
+    snapchat: 'https://www.snapchat.com/add/s.gadr?share_id=vCdCKaPzh98&locale=ar-SA',
   },
 };
 
-// Old template references for replacement. Keep them separate from published actions and schema.
-export const templateLinks = {
-  map: 'https://www.google.com/maps/dir/?api=1&destination=18.223791,42.672173&travelmode=driving',
-  instagram: 'https://www.instagram.com/shhala_sa?utm_source=qr',
-  tiktok: 'https://www.tiktok.com/@shhala_sa?is_from_webapp=1&sender_device=pc',
-  snapchat: 'https://www.snapchat.com/add/shhala_sa?share_id=Tiu42HcgbuM&locale=en-US',
-  whatsapp: 'https://wa.me/966569472778',
-  whatsappQr: 'https://wa.me/qr/HHKEO63NHYYDP1',
-};
+// Isolate the left-to-right name where HTML direction attributes are unavailable.
+export const restaurantNameText = '\u2066' + restaurant.name + '\u2069';
 
 export const navigation = [
   { path: '/', label: 'الرئيسية', key: 'home' },
@@ -39,13 +33,12 @@ export const navigation = [
 ];
 
 export const services = [
-  { name: 'جلسات أفراد وعائلات', text: 'قسم للأفراد وقسم مخصص للعائلات داخل المطعم.', icon: 'dine' },
+  { name: 'جلسات للأفراد فقط', text: 'الجلوس داخل المطعم مخصص للأفراد.', icon: 'dine' },
   { name: 'طلبات سفري', text: 'اطلب عبر واتساب واستلم طلبك من الفرع.', icon: 'takeaway' },
   { name: 'توصيل مجاني', text: 'راسلنا على واتساب لتأكيد عنوان التوصيل.', icon: 'delivery' },
 ];
 
 export const socials = [
-  { key: 'instagram', name: 'إنستغرام' },
   { key: 'tiktok', name: 'تيك توك' },
   { key: 'snapchat', name: 'سناب شات' },
 ];
