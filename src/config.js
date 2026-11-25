@@ -14,7 +14,7 @@ export const restaurant = {
   breakfastEnds: '12:00',
   closes: '02:00',
   currency: 'SAR',
-  exactMapUrl: 'https://maps.app.goo.gl/S2XXQPeVPtGXiUjE8',
+  exactMapUrl: 'https://maps.app.goo.gl/HJChFRbZ5P5wad367',
   social: {
     tiktok: 'https://www.tiktok.com/@s.gadr?_r=1&_t=ZS-9BEIpVyo7SJ',
     snapchat: 'https://www.snapchat.com/add/s.gadr?share_id=vCdCKaPzh98&locale=ar-SA',
