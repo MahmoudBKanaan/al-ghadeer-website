@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import {
-  ArrowLeft, Beef, ChevronLeft, Clock3, Coffee, CookingPot, CupSoda, Fish, Flame, Info, Leaf, Plus, Sandwich,
+  ArrowLeft, Beef, ChevronLeft, Clock3, Coffee, CookingPot, CupSoda, Fish, Flame, Info, Leaf, Pizza, Plus, Sandwich,
   Search, Soup, UtensilsCrossed, Wheat, X,
 } from 'lucide-react';
 import { categories, formatNumber, formatPrice, itemPath, items, menuImage, normalizedSearch, variantsFor } from './catalog.js';
@@ -8,7 +8,7 @@ import { href, restaurant, restaurantNameText } from './config.js';
 import { LinkButton, MenuHours, PageHeading, RestaurantName, SectionHeading, WhatsAppButton } from './shared.jsx';
 
 const categoryIcons = { grills: Flame, pottery: CookingPot, fish: Fish, rice: Wheat, salads: Leaf,
-  meals: UtensilsCrossed, breakfast: Soup, sandwiches: Sandwich, stews: Beef, 'hot-drinks': Coffee, 'cold-drinks': CupSoda };
+  meals: UtensilsCrossed, breakfast: Soup, sandwiches: Sandwich, pastries: Pizza, stews: Beef, 'hot-drinks': Coffee, 'cold-drinks': CupSoda };
 
 function serviceHours(categoryId) {
   return categoryId === 'breakfast' ? restaurant.breakfastHoursText : restaurant.mainMenuHoursText;

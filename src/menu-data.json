@@ -18,10 +18,10 @@
     "logo": "شعار أزرق أحادي اللون داخل إطار بيضاوي قائم. تظهر كلمة «الغدير» بخط عربي مرسوم، تليها ثلاثة أمواج أفقية، ثم حرف S داخل شكل حرف G."
   },
   "sourceNotes": [
-    "في الصورة 82 سطر صنف، منها تكرار مطابق واحد. تضم القائمة الرقمية 82 صنفًا ضمن 11 قسمًا بعد إضافة بيبسي وسط.",
+    "في الصورة الأصلية 82 سطر صنف، منها تكرار مطابق واحد. تضم القائمة الرقمية بعد الإضافات 87 صنفًا ضمن 12 قسمًا.",
     "يظهر رقم 8 إضافي في عمود أسعار الفطور الأيمن دون سطر مقابل. أُبقيت أسعار الأطباق بحسب سياق الصفوف الظاهرة إلى أن يُؤكّد التسعير.",
     "مشكل المشويات يحمل خمسة أسعار مدرجة، في حين لم تُحدد تسمية الحجم الخامس.",
-    "الأسعار المحدّثة للبيض بالجبنة والمشروب الغازي الصغير هي 10 ريالات و3 ريالات على التوالي.",
+    "تعكس القائمة تعديلات المطعم على الأسعار والأسماء وإضافة بيبسي وسط ونصف شيش طاووق مع الأرز وقسم المعجنات.",
     "الصورة تحمل الاسم والمنطقة ورقم الاتصال، وتذكر أن خدمة التوصيل مجانية.",
     "الأوصاف تحريرية موجزة، وتحتاج المكونات الدقيقة والحساسيات وأحجام الحصص والتقديم إلى اعتماد المطعم."
   ],
@@ -75,7 +75,7 @@
           "id": "chicken-kebab",
           "name": "كباب دجاج",
           "prices": [
-            25
+            22
           ],
           "description": "أسياخ كباب من الدجاج المفروم المتبّل والمشوي.",
           "photoPrompt": "four light golden grilled ground chicken kebab skewers"
@@ -84,7 +84,7 @@
           "id": "chicken-kebab-tahini",
           "name": "كباب دجاج بالطحينة",
           "prices": [
-            25
+            22
           ],
           "description": "كباب دجاج مشوي مع صلصة الطحينة.",
           "photoPrompt": "four golden grilled ground chicken kebab skewers topped with pale tahini drizzle"
@@ -93,7 +93,7 @@
           "id": "chicken-kebab-pomegranate",
           "name": "كباب دجاج بحامض الرمان",
           "prices": [
-            25
+            22
           ],
           "description": "كباب دجاج مشوي بنكهة حامض الرمان.",
           "photoPrompt": "four golden grilled ground chicken kebab skewers glazed with dark pomegranate molasses"
@@ -111,7 +111,7 @@
           "id": "bone-in-shish-tawook",
           "name": "شيش طاووق بالعظم",
           "prices": [
-            25
+            22
           ],
           "description": "قطع دجاج متبّلة ومشوية تُقدَّم بالعظم.",
           "photoPrompt": "charcoal grilled bone-in chicken pieces with reddish tawook marinade on white plate"
@@ -129,7 +129,7 @@
           "id": "foil-chicken",
           "name": "دجاج بالقصدير",
           "prices": [
-            25
+            22
           ],
           "description": "دجاج متبّل مطهو داخل القصدير.",
           "photoPrompt": "golden chicken portions cooked inside opened crinkled aluminum foil"
@@ -156,7 +156,7 @@
           "id": "meat-arayes",
           "name": "عرائس لحم",
           "prices": [
-            22
+            20
           ],
           "description": "خبز محشو باللحم المفروم، يُحمّص حتى يصبح مقرمشًا.",
           "photoPrompt": "crispy triangular grilled pita pockets visibly stuffed with minced meat"
@@ -274,7 +274,7 @@
           "id": "half-charcoal-chicken-rice",
           "name": "نصف دجاجة على الفحم مع الأرز",
           "prices": [
-            25
+            22
           ],
           "description": "نصف دجاجة مشوية على الفحم مع الأرز.",
           "photoPrompt": "half split charcoal chicken on a generous bed of long grain rice"
@@ -283,16 +283,25 @@
           "id": "quarter-tawook-rice",
           "name": "ربع شيش طاووق مع الأرز",
           "prices": [
-            17
+            15
           ],
           "description": "وجبة ربع شيش طاووق مع الأرز.",
           "photoPrompt": "small portion of grilled reddish chicken tawook chunks or a single skewer with fluffy long grain rice"
         },
         {
+          "id": "half-tawook-rice",
+          "name": "نصف شيش طاووق مع الأرز",
+          "prices": [
+            25
+          ],
+          "description": "وجبة نصف شيش طاووق مشوي تُقدَّم مع الأرز.",
+          "photoPrompt": "generous portion of grilled chicken shish tawook pieces over a bed of fluffy long-grain rice"
+        },
+        {
           "id": "fish-rice",
           "name": "سمك مع الأرز",
           "prices": [
-            30
+            28
           ],
           "description": "وجبة سمك تُقدَّم مع الأرز.",
           "photoPrompt": "golden cooked fish served over long grain rice, oval white plate"
@@ -326,7 +335,7 @@
           "id": "mutabbal",
           "name": "متبل",
           "prices": [
-            8
+            7
           ],
           "description": "مقبلات من الباذنجان المهروس بنكهة مدخّنة.",
           "photoPrompt": "creamy smoked eggplant mutabbal in a bowl, light beige, olive oil"
@@ -335,7 +344,7 @@
           "id": "hummus",
           "name": "حمص",
           "prices": [
-            8
+            7
           ],
           "description": "حمص مهروس بقوام ناعم يُقدَّم كمقبّل.",
           "photoPrompt": "smooth chickpea hummus in bowl with spiral and a few chickpeas"
@@ -344,7 +353,7 @@
           "id": "baba-ghanouj",
           "name": "بابا غنوج",
           "prices": [
-            8
+            7
           ],
           "description": "مقبلات باذنجان مشوي بقوام خشن نسبيًا.",
           "photoPrompt": "chunky roasted eggplant baba ghanoush mezze with tiny vegetable pieces"
@@ -353,7 +362,7 @@
           "id": "tabbouleh",
           "name": "تبولة",
           "prices": [
-            8
+            7
           ],
           "description": "سلطة بقدونس مفروم بقوام خفيف ونكهة منعشة.",
           "photoPrompt": "bright chopped parsley tabbouleh with fine bulgur and finely diced tomato"
@@ -362,7 +371,7 @@
           "id": "spicy-romiya-salad",
           "name": "سلطة رومية حارة",
           "prices": [
-            8
+            7
           ],
           "description": "سلطة رومية على طريقة المطعم بنكهة حارة.",
           "photoPrompt": "finely chopped spicy Levantine salad, vivid red peppers and tomato in shallow bowl"
@@ -371,7 +380,7 @@
           "id": "cold-romiya-salad",
           "name": "سلطة رومية باردة",
           "prices": [
-            8
+            7
           ],
           "description": "سلطة رومية تُقدَّم باردة.",
           "photoPrompt": "chilled finely chopped Levantine salad, tomato and cucumber in shallow white bowl"
@@ -380,7 +389,7 @@
           "id": "turkish-salad",
           "name": "سلطة تركية",
           "prices": [
-            8
+            7
           ],
           "description": "سلطة خضار مفرومة على الطريقة التركية.",
           "photoPrompt": "Turkish-style finely chopped tomato pepper and herb salad in shallow white bowl"
@@ -389,7 +398,7 @@
           "id": "olive-salad",
           "name": "سلطة زيتون",
           "prices": [
-            8
+            7
           ],
           "description": "سلطة خضار وزيتون مقطّع.",
           "photoPrompt": "green and black sliced olive salad with colorful finely diced vegetables"
@@ -398,7 +407,7 @@
           "id": "fattoush",
           "name": "فتوش",
           "prices": [
-            8
+            7
           ],
           "description": "سلطة خضار مع قطع خبز محمّصة.",
           "photoPrompt": "Lebanese fattoush, chopped greens tomatoes cucumbers and crisp pita chips"
@@ -407,7 +416,7 @@
           "id": "yogurt-cucumber",
           "name": "روب بالخيار",
           "prices": [
-            6
+            5
           ],
           "description": "مقبل بارد يجمع الروب والخيار.",
           "photoPrompt": "white yogurt and chopped cucumber in a bowl, subtle herbs"
@@ -420,7 +429,7 @@
       "items": [
         {
           "id": "chicken-burger",
-          "name": "برجر دجاج",
+          "name": "وجبة همبرغر دجاج",
           "prices": [
             12
           ],
@@ -429,7 +438,7 @@
         },
         {
           "id": "meat-burger",
-          "name": "برجر لحم",
+          "name": "وجبة همبرغر لحم",
           "prices": [
             12
           ],
@@ -512,7 +521,7 @@
           "id": "chicken-kebab-sandwich",
           "name": "ساندويتش كباب دجاج",
           "prices": [
-            15
+            12
           ],
           "description": "ساندويتش كباب دجاج مشوي في خبز ملفوف.",
           "photoPrompt": "open flatbread sandwich with four visible golden ground chicken kebab sticks"
@@ -521,10 +530,52 @@
           "id": "shish-tawook-sandwich",
           "name": "ساندويتش شيش طاووق",
           "prices": [
-            15
+            12
           ],
           "description": "ساندويتش بقطع دجاج شيش طاووق مشوية.",
           "photoPrompt": "flatbread wrap with visible reddish grilled chicken tawook chunks"
+        }
+      ]
+    },
+    {
+      "id": "pastries",
+      "name": "معجنات",
+      "items": [
+        {
+          "id": "pizza",
+          "name": "بيتزا",
+          "prices": [
+            15
+          ],
+          "description": "بيتزا مخبوزة في الفرن.",
+          "photoPrompt": "round baked pizza with golden crust and melted cheese"
+        },
+        {
+          "id": "ush-al-bulbul",
+          "name": "عش البلبل",
+          "prices": [
+            12
+          ],
+          "description": "فطيرة عش البلبل من معجنات المطعم.",
+          "photoPrompt": "Middle Eastern ush al bulbul pastry, round golden dough with a raised rim"
+        },
+        {
+          "id": "cheese-pastry",
+          "name": "جبن",
+          "prices": [
+            6
+          ],
+          "description": "فطيرة مخبوزة بالجبن.",
+          "photoPrompt": "Middle Eastern baked cheese pastry with melted golden cheese"
+        },
+        {
+          "id": "labneh-pastry",
+          "name": "لبنة",
+          "prices": [
+            6
+          ],
+          "description": "فطيرة مخبوزة باللبنة.",
+          "photoPrompt": "Middle Eastern flatbread pastry topped with creamy white labneh"
         }
       ]
     },
