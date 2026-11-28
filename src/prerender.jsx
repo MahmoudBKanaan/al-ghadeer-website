@@ -1,6 +1,6 @@
 import { renderToString } from 'react-dom/server';
 import { App, allRoutes } from './site.jsx';
-import { categories, itemPath, variantsFor } from './catalog.js';
+import { categories, items, itemPath, variantsFor } from './catalog.js';
 import { href, restaurant, restaurantNameText, serviceHours } from './config.js';
 
 const arabicLocale = 'ar-SA';
@@ -32,6 +32,8 @@ function menuItemSchema(item, siteUrl) {
 
 function restaurantSchema(siteUrl) {
   const home = absolute('/', siteUrl);
+  const menuUrl = absolute('/menu/', siteUrl);
+  const prices = items.flatMap(item => item.prices);
   const profiles = Object.values(restaurant.social).filter(Boolean);
   return {
     '@type': 'Restaurant',
@@ -41,11 +43,20 @@ function restaurantSchema(siteUrl) {
     url: home,
     telephone: restaurant.phoneInternational,
     image: absolute('/images/brand/hero.webp', siteUrl),
-    logo: absolute('/images/brand/logo.png', siteUrl),
-    address: { '@type': 'PostalAddress', addressLocality: restaurant.city, addressCountry: 'SA' },
+    logo: absolute('/images/brand/favicon.png', siteUrl),
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: `${restaurant.shortAddress}، شارع ${restaurant.street}، ${restaurant.district}`,
+      addressLocality: restaurant.city,
+      postalCode: restaurant.postalCode,
+      addressCountry: 'SA',
+    },
+    geo: { '@type': 'GeoCoordinates', ...restaurant.geo },
     areaServed: { '@type': 'City', name: restaurant.city },
     servesCuisine: ['مشويات', 'أطباق شرقية'],
-    hasMenu: absolute('/menu/', siteUrl),
+    ...(prices.length ? { priceRange: `${Math.min(...prices)}–${Math.max(...prices)} ${restaurant.currency}` } : {}),
+    menu: menuUrl,
+    hasMenu: { '@id': `${menuUrl}#menu` },
     openingHoursSpecification: Object.values(serviceHours).map(({ opens, closes }) => ({
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(day => `${schemaContext}/${day}`),
@@ -67,7 +78,7 @@ function schemaFor(route, siteUrl) {
   const graph = [];
   if (route.key === 'home') {
     graph.push({ '@type': 'WebSite', '@id': site, name: restaurant.name,
-      alternateName: restaurant.searchAliases, inLanguage: arabicLocale, url: home, publisher: { '@id': business } }, restaurantSchema(siteUrl));
+      alternateName: restaurant.searchAliases, inLanguage: arabicLocale, url: home, publisher: { '@id': business } });
   }
   const page = {
     '@type': { contact: 'ContactPage', story: 'AboutPage', menu: 'CollectionPage' }[route.key] || 'WebPage',
@@ -75,6 +86,11 @@ function schemaFor(route, siteUrl) {
     inLanguage: arabicLocale, isPartOf: { '@id': site }, about: { '@id': business },
   };
   graph.push(page);
+
+  if (route.key === 'home' || route.key === 'locations') {
+    page.mainEntity = { '@id': business };
+    graph.push(restaurantSchema(siteUrl));
+  }
 
   if (route.key !== 'home') {
     const crumbs = [{ name: 'الرئيسية', url: home }];
@@ -113,17 +129,17 @@ const htmlChars = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": 
 function escapeHtml(value) { return value.replace(/[&<>"']/g, char => htmlChars[char]); }
 function meta(name, value, attribute = 'name') { return `<meta ${attribute}="${name}" content="${escapeHtml(value)}">`; }
 
-function pageHead(route, siteUrl) {
+function pageHead(route, siteUrl, primaryImage) {
   const head = [
     meta('description', route.description),
-    `<link rel="icon" href="${href('/images/brand/logo.svg')}" type="image/svg+xml">`,
-    `<link rel="apple-touch-icon" href="${href('/images/brand/logo.png')}">`,
+    `<link rel="icon" href="${href('/images/brand/favicon.png')}" type="image/png" sizes="192x192">`,
+    `<link rel="apple-touch-icon" href="${href('/images/brand/favicon.png')}">`,
     meta('theme-color', '#F8F7F5'),
   ];
   if (!siteUrl || route.key === '404') return [...head, meta('robots', 'noindex, follow')].join('\n    ');
 
   const url = absolute(route.path, siteUrl);
-  const image = route.item ? `/images/menu/${route.item.id}.webp` : '/images/brand/hero.webp';
+  const image = primaryImage || '/images/brand/hero.webp';
   const alt = route.item ? `صورة توضيحية لصنف ${route.item.name}` : `صورة توضيحية للمشويات من ${restaurantNameText}`;
   return [...head,
     meta('robots', 'index, follow, max-image-preview:large'),
@@ -139,11 +155,16 @@ function pageHead(route, siteUrl) {
 }
 
 export function renderPages(template, siteUrl) {
-  return allRoutes().map(route => ({
-    path: route.path,
-    html: template
-      .replace(/<title>[^<]*<\/title>/, () => `<title>${escapeHtml(route.title)}</title>`)
-      .replace('<!-- PAGE_HEAD -->', () => pageHead(route, siteUrl))
-      .replace('<div id="root"></div>', () => `<div id="root">${renderToString(<App route={route} />)}</div>`),
-  }));
+  return allRoutes().map(route => {
+    const primaryImage = route.item ? `/images/menu/${route.item.id}.webp`
+      : ['home', 'story'].includes(route.key) ? '/images/brand/hero.webp' : null;
+    return {
+      path: route.path,
+      primaryImage,
+      html: template
+        .replace(/<title>[^<]*<\/title>/, () => `<title>${escapeHtml(route.title)}</title>`)
+        .replace('<!-- PAGE_HEAD -->', () => pageHead(route, siteUrl, primaryImage))
+        .replace('<div id="root"></div>', () => `<div id="root">${renderToString(<App route={route} />)}</div>`),
+    };
+  });
 }

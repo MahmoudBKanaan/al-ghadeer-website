@@ -33,11 +33,12 @@ try {
   const sitemap = siteUrl ? `Sitemap: ${new URL('sitemap.xml', siteUrl).href}\n` : '';
   await writeFile(join(output, 'robots.txt'), `User-agent: *\nAllow: /\n${sitemap}`);
   if (siteUrl) {
-    const urls = pages.filter(page => page.path !== '/404.html').map(({ path }) => {
-      const url = new URL(path.slice(1), siteUrl).href.replace(/&/g, '&amp;');
-      return `  <url><loc>${url}</loc></url>`;
+    const sitemapUrl = path => new URL(path.slice(1), siteUrl).href.replace(/&/g, '&amp;');
+    const urls = pages.filter(page => page.path !== '/404.html').map(({ path, primaryImage }) => {
+      const image = primaryImage ? `<image:image><image:loc>${sitemapUrl(primaryImage)}</image:loc></image:image>` : '';
+      return `  <url><loc>${sitemapUrl(path)}</loc>${image}</url>`;
     });
-    await writeFile(join(output, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`);
+    await writeFile(join(output, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.join('\n')}\n</urlset>\n`);
   }
   await writeFile(join(output, '.nojekyll'), '');
   await writeFile(join(output, 'build-info.json'), `${JSON.stringify({ base, siteUrl: siteUrl?.href || null, routes: pages.map(page => page.path) }, null, 2)}\n`);

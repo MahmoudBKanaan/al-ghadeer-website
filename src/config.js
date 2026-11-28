@@ -3,12 +3,21 @@ export const serviceHours = {
   main: { opens: '15:00', closes: '02:00', text: 'من ٣ عصرًا إلى ٢ صباحًا' },
 };
 
+const mapsName = 'مطعم سيل الغدير';
+const englishName = 'Sail Al Ghadir Restaurant';
+
 export const restaurant = {
   name: 'مطعم .S. الغدير',
-  searchAliases: ['Al Ghadeer Restaurant', 'Al Ghadir Restaurant'],
+  mapsName,
+  englishName,
+  searchAliases: [mapsName, englishName, 'Al Ghadeer Restaurant', 'Al Ghadir Restaurant'],
   city: 'حفر الباطن',
   district: 'حي النهضة',
+  street: 'هارون الرشيد',
   country: 'المملكة العربية السعودية',
+  shortAddress: 'CNMB4635',
+  postalCode: '39958',
+  geo: { latitude: 28.4331423, longitude: 45.9266663 },
   phoneDisplay: '0501083083',
   phoneInternational: '+966501083083',
   whatsapp: '966501083083',

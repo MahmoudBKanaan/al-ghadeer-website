@@ -1,15 +1,15 @@
 import { href, restaurant, restaurantNameText, routePath } from './config.js';
-import { itemById, itemPath, items } from './catalog.js';
+import { formatNumber, formatPrice, itemById, itemPath, items } from './catalog.js';
 import { CartBar, useCart } from './cart.jsx';
 import { ItemPage, MenuPage } from './menu.jsx';
 import { ContactPage, HomePage, LocationsPage, NotFoundPage, StoryPage } from './pages.jsx';
 import { Footer, Header, Tapes, useTapeMotion } from './shared.jsx';
 
 const pages = {
-  '/': { key: 'home', component: HomePage, title: `${restaurantNameText} في حفر الباطن | مشويات وأطباق شرقية`, description: `${restaurantNameText} في حي النهضة بحفر الباطن. قائمة مشويات وطواجن وأطباق شرقية، وجلسات للأفراد فقط، وسفري وتوصيل مجاني عبر واتساب.` },
-  '/story/': { key: 'story', component: StoryPage, title: `قصتنا | ${restaurantNameText} في حفر الباطن`, description: `تعرّف على ${restaurantNameText} في حي النهضة بحفر الباطن، وتصفّح خيارات الطعام وجلسات الأفراد والطلبات السفري والتوصيل.` },
-  '/menu/': { key: 'menu', component: MenuPage, title: `قائمة الطعام والأسعار | ${restaurantNameText} في حفر الباطن`, description: `تصفّح قائمة ${restaurantNameText} بحفر الباطن. ${restaurant.breakfastHoursText}، و${restaurant.mainMenuHoursText}.` },
-  '/locations/': { key: 'locations', component: LocationsPage, title: `موقع الفرع وساعات العمل | ${restaurantNameText}`, description: `موقع ${restaurantNameText} في حي النهضة بحفر الباطن. نرحّب بكم ${restaurant.hoursText}، مع جلسات للأفراد فقط.` },
+  '/': { key: 'home', component: HomePage, title: `${restaurantNameText} في حفر الباطن | مشويات وأطباق شرقية`, description: `تصفّح منيو ${restaurantNameText} في حي النهضة بحفر الباطن وأسعار المشويات والطواجن والفطور. جلسات الفرع للأفراد فقط، وطلبات السفري والتوصيل المجاني عبر واتساب.` },
+  '/story/': { key: 'story', component: StoryPage, title: `عن ${restaurantNameText} في حفر الباطن`, description: `تعرّف على مطبخ ${restaurantNameText} في حي النهضة، من كباب اللحم والدجاج إلى الفخاريات وأطباق الفطور، وعلى خيارات الجلوس للأفراد والاستلام من الفرع.` },
+  '/menu/': { key: 'menu', component: MenuPage, title: `منيو ${restaurantNameText} في حفر الباطن | قائمة الطعام والأسعار`, description: `قائمة ${restaurantNameText} وأسعار المشويات والطواجن والفطور بالريال السعودي. ${restaurant.breakfastHoursText}، و${restaurant.mainMenuHoursText}.` },
+  '/locations/': { key: 'locations', component: LocationsPage, title: `عنوان فرع حي النهضة وساعات العمل | ${restaurantNameText} في حفر الباطن`, description: `اتبع الخريطة للوصول إلى «${restaurant.mapsName}» في ${restaurant.district}، ${restaurant.city}. العنوان المختصر ${restaurant.shortAddress}. نستقبلكم ${restaurant.hoursText}.` },
   '/contact/': { key: 'contact', component: ContactPage, title: `واتساب ورقم التواصل | ${restaurantNameText} في حفر الباطن`, description: `اتصل أو اطلب من ${restaurantNameText} عبر واتساب على ${restaurant.phoneDisplay}. طلبات سفري وتوصيل مجاني في حفر الباطن.` },
 };
 
@@ -21,9 +21,15 @@ export function getRoute(pathname) {
   if (pages[lookup]) return { ...pages[lookup], path: lookup };
   const id = /^\/menu\/([a-z0-9-]+)$/.exec(path)?.[1];
   const item = itemById.get(id);
-  if (item) return { path: itemPath(item), key: 'item', component: ItemPage, item,
-    title: `${item.name} | ${restaurantNameText} في حفر الباطن`,
-    description: `${item.description} اطّلع على الحجم والسعر وطرق الطلب من ${restaurantNameText} في حفر الباطن.` };
+  if (item) {
+    const { prices } = item;
+    let priceText = 'السعر عند الاستفسار.';
+    if (prices.length === 1) priceText = `السعر ${formatPrice(prices[0])}.`;
+    if (prices.length > 1) priceText = `من ${formatNumber(prices[0])} إلى ${formatPrice(prices.at(-1))} حسب الحجم.`;
+    return { path: itemPath(item), key: 'item', component: ItemPage, item,
+      title: `${item.name} | ${restaurantNameText}`,
+      description: `${item.name} من قائمة ${restaurantNameText} في ${restaurant.city}. ${priceText} ${item.description}` };
+  }
   return notFound;
 }
 

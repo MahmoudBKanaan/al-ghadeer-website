@@ -19,7 +19,10 @@ export function MenuCard({ item, cart }) {
   const path = href(itemPath(item));
   const prices = item.prices;
   return <article className="menu-card">
-    <a className="menu-photo" href={path} tabIndex={-1} aria-hidden="true"><img src={menuImage(item)} alt="" width="780" height="520" loading="lazy" decoding="async" /></a>
+    <a className="menu-photo" href={path} tabIndex={-1} aria-hidden="true"><img src={menuImage(item)}
+      srcSet={`${href(`/images/menu/thumbs/${item.id}.webp`)} 480w, ${menuImage(item)} 780w`}
+      sizes="auto, (max-width: 650px) 50vw, (max-width: 850px) 33vw, (max-width: 1220px) 25vw, 290px"
+      alt="" width="780" height="520" loading="lazy" decoding="async" /></a>
     <div className="menu-card-body">
       <div className="menu-card-copy">
         <h3><a href={path}>{item.name}</a></h3>
@@ -45,7 +48,7 @@ export function MenuPage({ cart }) {
   const count = visible.reduce((sum, category) => sum + category.items.length, 0);
 
   return <>
-    <PageHeading label={<RestaurantName />} title="قائمة الطعام" text="استعرض المشويات والطواجن والأطباق الشرقية. افتح أي صنف للاطلاع على وصفه وأسعار أحجامه." />
+    <PageHeading label={<RestaurantName />} title="قائمة الطعام والأسعار" text={`منيو فرع ${restaurant.district} في ${restaurant.city}. اختر من أطباق الفطور أو المشويات والطواجن، واضغط على اسم الصنف للاطلاع على الأحجام وأسعارها.`} />
     <MenuHours />
     <div className="menu-tools">
       <div className="menu-search"><Search size={22} aria-hidden="true" /><label className="sr-only" htmlFor="menu-search">ابحث في قائمة الطعام</label><input id="menu-search" type="search" placeholder="ابحث عن صنف" autoComplete="off" value={query} onChange={event => setQuery(event.target.value)} />{query && <button type="button" onClick={() => setQuery('')} aria-label="مسح البحث"><X size={19} aria-hidden="true" /></button>}</div>
