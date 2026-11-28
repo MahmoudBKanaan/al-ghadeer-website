@@ -21,25 +21,25 @@ npm run preview
 
 ### النشر التلقائي على GitHub Pages
 
-عند دفع أي تحديث إلى فرع `main`، يعمل سير العمل `.github/workflows/pages.yml` تلقائيًا. يثبّت الحزم باستخدام `npm ci`، ثم يبني الموقع ويشغّل `npm run verify`، وينشر مجلد `dist/` بعد نجاح الفحص. يضبط عنوان الإنتاج من إعدادات GitHub Pages أثناء البناء. يمكن أيضًا تشغيل النشر يدويًا من تبويب Actions.
+عند دفع أي تحديث إلى فرع `main`، يعمل سير العمل `.github/workflows/pages.yml` تلقائيًا. يثبّت الحزم باستخدام `npm ci`، ثم يبني الموقع ويشغّل `npm run verify`، وينشر مجلد `dist/` بعد نجاح الفحص. يستخدم البناء نطاق GitHub Pages ومساره مع HTTPS. بعد النشر، يفتح سير العمل الصفحة الرئيسية على نطاق المطعم ويتحقق من تطابقها مع الملف الذي بُني. يمكن أيضًا تشغيل النشر يدويًا من تبويب Actions.
 
-[الموقع المنشور](https://mahmoudbkanaan.github.io/al-ghadeer-website/) · [حالة النشر](https://github.com/MahmoudBKanaan/al-ghadeer-website/actions)
+[الموقع المنشور](https://sail-al-ghadir-restaurant.com/) · [حالة النشر](https://github.com/MahmoudBKanaan/al-ghadeer-website/actions/workflows/pages.yml)
 
 ### البناء والنشر اليدوي
 
 ١. عدّل بيانات الفرع وروابط التواصل في `src/config.js`، وراجع الأسعار ومقاسات الوجبات في `src/menu-data.json`. صفحة الفرع تفتح موقع المطعم في خرائط Google.
 
-٢. اضبط عنوان موقع الإنتاج الكامل وأعد البناء. استبدل نطاق المثال بنطاق المطعم:
+٢. اضبط عنوان موقع الإنتاج الكامل وأعد البناء.
 
 ```bash
-SITE_URL=https://restaurant.example npm run build
+SITE_URL=https://sail-al-ghadir-restaurant.com npm run build
 npm run verify
 ```
 
 في Windows PowerShell:
 
 ```powershell
-$env:SITE_URL = 'https://restaurant.example'
+$env:SITE_URL = 'https://sail-al-ghadir-restaurant.com'
 npm run build
 npm run verify
 ```

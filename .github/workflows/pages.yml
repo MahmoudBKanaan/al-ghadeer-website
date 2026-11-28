@@ -12,6 +12,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      homepage_sha256: ${{ steps.build.outputs.homepage_sha256 }}
     permissions:
       contents: read
       pages: read
@@ -27,11 +29,13 @@ jobs:
         id: pages
       - run: npm ci
       - name: Build and verify the static site
+        id: build
         run: |
           npm run build
           npm run verify
+          echo "homepage_sha256=$(sha256sum dist/index.html | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
         env:
-          SITE_URL: ${{ steps.pages.outputs.base_url }}
+          SITE_URL: https://${{ steps.pages.outputs.host }}${{ steps.pages.outputs.base_path }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
@@ -48,3 +52,26 @@ jobs:
     steps:
       - uses: actions/deploy-pages@v4
         id: deployment
+
+  verify-live:
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    permissions: {}
+    steps:
+      - name: Verify the homepage on the restaurant domain
+        env:
+          HOME_URL: https://sail-al-ghadir-restaurant.com/
+          EXPECTED_SHA256: ${{ needs.build.outputs.homepage_sha256 }}
+        run: |
+          for attempt in {1..18}; do
+            url="${HOME_URL}?deployment=${GITHUB_SHA}&attempt=${GITHUB_RUN_ATTEMPT}-${attempt}"
+            if curl --fail --silent --show-error --connect-timeout 5 --max-time 10 "$url" -o homepage.html &&
+              echo "$EXPECTED_SHA256  homepage.html" | sha256sum --check --status; then
+              echo "Verified ${HOME_URL} against the deployed build."
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "::error::The homepage at ${HOME_URL} did not match this build over HTTPS."
+          exit 1
