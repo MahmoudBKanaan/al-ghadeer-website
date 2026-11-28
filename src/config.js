@@ -1,3 +1,8 @@
+export const serviceHours = {
+  breakfast: { opens: '06:00', closes: '10:00', text: 'من ٦ صباحًا إلى ١٠ صباحًا' },
+  main: { opens: '15:00', closes: '02:00', text: 'من ٣ عصرًا إلى ٢ صباحًا' },
+};
+
 export const restaurant = {
   name: 'مطعم .S. الغدير',
   searchAliases: ['Al Ghadeer Restaurant', 'Al Ghadir Restaurant'],
@@ -7,12 +12,9 @@ export const restaurant = {
   phoneDisplay: '0501083083',
   phoneInternational: '+966501083083',
   whatsapp: '966501083083',
-  hoursText: 'يوميًا من ٦ صباحًا إلى ٢ صباحًا',
-  breakfastHoursText: 'الفطور من ٦ صباحًا إلى ١٢ ظهرًا',
-  mainMenuHoursText: 'بقية القائمة من ١٢ ظهرًا إلى ٢ صباحًا',
-  opens: '06:00',
-  breakfastEnds: '12:00',
-  closes: '02:00',
+  hoursText: `يوميًا ${serviceHours.breakfast.text}، و${serviceHours.main.text}`,
+  breakfastHoursText: `الفطور ${serviceHours.breakfast.text}`,
+  mainMenuHoursText: `بقية القائمة ${serviceHours.main.text}`,
   currency: 'SAR',
   exactMapUrl: 'https://maps.app.goo.gl/HJChFRbZ5P5wad367',
   social: {
@@ -20,6 +22,18 @@ export const restaurant = {
     snapchat: 'https://www.snapchat.com/add/s.gadr?share_id=vCdCKaPzh98&locale=ar-SA',
   },
 };
+
+const restaurantClock = new Intl.DateTimeFormat('en-GB', {
+  timeZone: 'Asia/Riyadh', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+});
+
+export function currentMenuService(now = new Date()) {
+  const time = restaurantClock.format(now);
+  const { breakfast, main } = serviceHours;
+  if (time >= breakfast.opens && time < breakfast.closes) return 'breakfast';
+  if (time >= main.opens || time < main.closes) return 'main';
+  return null;
+}
 
 // Isolate the right-to-left name where HTML direction attributes are unavailable.
 export const restaurantNameText = '\u2067' + restaurant.name + '\u2069';

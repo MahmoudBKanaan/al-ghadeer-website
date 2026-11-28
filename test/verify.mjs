@@ -3,6 +3,7 @@ import { readFileSync, statSync } from 'node:fs';
 import { resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { resolveBase, resolveSiteUrl } from '../scripts/settings.mjs';
+import { currentMenuService } from '../src/config.js';
 
 const project = fileURLToPath(new URL('../', import.meta.url));
 const dist = resolve(project, process.env.DIST_DIR || 'dist');
@@ -11,6 +12,16 @@ const read = path => readFileSync(fromDist(path), 'utf8');
 const readJson = path => JSON.parse(read(path));
 const menu = JSON.parse(readFileSync(resolve(project, 'src/menu-data.json'), 'utf8'));
 const metadata = readJson('build-info.json');
+
+const serviceBoundaries = [
+  ['00:00', 'main'], ['01:59', 'main'], ['02:00', null], ['05:59', null],
+  ['06:00', 'breakfast'], ['09:59', 'breakfast'], ['10:00', null], ['14:59', null],
+  ['15:00', 'main'], ['23:59', 'main'],
+];
+for (const [time, expected] of serviceBoundaries) {
+  const instant = new Date(`2026-01-01T${time}:00+03:00`);
+  assert.equal(currentMenuService(instant), expected, `Incorrect ordering service at ${time} Riyadh time`);
+}
 
 function isFile(path) {
   return statSync(fromDist(path), { throwIfNoEntry: false })?.isFile() === true;
@@ -160,6 +171,16 @@ for (const route of routes) {
     assert(schemaBlocks.length > 0, `${route}: missing production JSON-LD`);
     if (route === '/') {
       assert(types.includes('Restaurant') && types.includes('WebSite'), 'Home page must describe the restaurant and website');
+      const business = schemaBlocks.flatMap(block => block['@graph']).find(node => node['@type'] === 'Restaurant');
+      const periods = business.openingHoursSpecification;
+      assert(Array.isArray(periods), 'Restaurant must publish both daily shifts');
+      assert.deepEqual(periods.map(({ opens, closes }) => `${opens}-${closes}`).sort(),
+        ['06:00-10:00', '15:00-02:00'], 'Incorrect published restaurant hours');
+      const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+      for (const period of periods) {
+        assert.deepEqual(new Set(period.dayOfWeek), new Set(days.map(day => `https://schema.org/${day}`)),
+          'Each shift must apply every day');
+      }
     } else if (route === '/menu/') {
       assert(types.includes('Menu'), 'Menu page must include Menu structured data');
     } else if (itemRoute) {

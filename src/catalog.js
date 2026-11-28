@@ -1,5 +1,5 @@
 import menu from './menu-data.json';
-import { href, restaurant } from './config.js';
+import { href } from './config.js';
 
 export const categories = menu.categories.map(category => ({
   ...category,
@@ -11,17 +11,6 @@ export const categories = menu.categories.map(category => ({
 }));
 export const items = categories.flatMap(category => category.items);
 export const itemById = new Map(items.map(item => [item.id, item]));
-
-const restaurantClock = new Intl.DateTimeFormat('en-GB', {
-  timeZone: 'Asia/Riyadh', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
-});
-
-export function currentMenuService(now = new Date()) {
-  const time = restaurantClock.format(now);
-  if (time >= restaurant.opens && time < restaurant.breakfastEnds) return 'breakfast';
-  if (time >= restaurant.breakfastEnds || time < restaurant.closes) return 'main';
-  return null;
-}
 
 export function isItemAvailable(item, service) {
   return service === (item.categoryId === 'breakfast' ? 'breakfast' : 'main');

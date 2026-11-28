@@ -1,7 +1,7 @@
 import { renderToString } from 'react-dom/server';
 import { App, allRoutes } from './site.jsx';
 import { categories, itemPath, variantsFor } from './catalog.js';
-import { href, restaurant, restaurantNameText } from './config.js';
+import { href, restaurant, restaurantNameText, serviceHours } from './config.js';
 
 const arabicLocale = 'ar-SA';
 const schemaContext = 'https://schema.org';
@@ -46,12 +46,12 @@ function restaurantSchema(siteUrl) {
     areaServed: { '@type': 'City', name: restaurant.city },
     servesCuisine: ['مشويات', 'أطباق شرقية'],
     hasMenu: absolute('/menu/', siteUrl),
-    openingHoursSpecification: {
+    openingHoursSpecification: Object.values(serviceHours).map(({ opens, closes }) => ({
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(day => `${schemaContext}/${day}`),
-      opens: restaurant.opens,
-      closes: restaurant.closes,
-    },
+      opens,
+      closes,
+    })),
     ...(profiles.length ? { sameAs: profiles } : {}),
     ...(restaurant.exactMapUrl ? { hasMap: restaurant.exactMapUrl } : {}),
   };

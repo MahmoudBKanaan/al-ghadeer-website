@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Minus, Plus, ShoppingBag, Trash2, X } from 'lucide-react';
-import { currentMenuService, formatNumber, formatPrice, isItemAvailable, itemById, variantsFor } from './catalog.js';
+import { formatNumber, formatPrice, isItemAvailable, itemById, variantsFor } from './catalog.js';
 import { IconWhatsApp } from './shared.jsx';
-import { restaurantNameText, whatsappUrl } from './config.js';
+import { currentMenuService, restaurantNameText, whatsappUrl } from './config.js';
 
 const STORAGE_KEY = 'alghadeer-order-v1';
 const MAX_QUANTITY = 99;
